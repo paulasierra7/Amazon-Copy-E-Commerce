@@ -1,6 +1,11 @@
 import './estilos.css'
+import ItemCount from './ItemCount'
+import App from '../App'
 
-const CartWidget = (carritoInfo) => {
+
+
+const CartWidget = ({contadorInicial, aumentarContador, resetearContador, disminuirContador}) => {
+    
     return (
         <>
         <div className='cartWidget-Container'>
@@ -8,8 +13,8 @@ const CartWidget = (carritoInfo) => {
                     alt="shoppingCart"
                     src="./cartIcon.png"
                 />
-        <p className="cartWidget-precio">
-            $ {carritoInfo.precio} USD
+        <p className="cartWidget-cantidad">
+            contador: {contadorInicial}
         </p>
         </div>
         </>

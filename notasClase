@@ -234,3 +234,26 @@ en props:
     <Footer test={true}/> // asi sale booleans. asi no salen strings. 
     <Footer test="true"/> // asi sale strings.
 */
+
+///////////////////////////////////////
+
+//clase 3 
+/* 
+1. Seleccionar el boton
+2. se agrega un click al boton. 
+3. aumentar la variable contador. 
+4. seleccionar los dos textos.
+5. texto.innerText = ""
+
+ESTADO: Son variables que se crean adentro de un componente y sirven para guardar ingormacion qu
+que sil a modificamos se van a ver reflejada en el componente automaticamente. 
+
+HOOK: son funciones. NO SE LLAMAN EN CONDICIONALES. 
+
+useState: Variable que guarda info y si la moificas modifica todo lo que usaba el componenete. te mandan estados nuevos y un metodo para modificarlo y siempre da un array como resultado. 
+
+contador++ (SI AUMENTA Y SI CAMBIA EL CONTADOR)
+(o sea que el ++ modifica y guarda el valor a la variable)
+contador + 1 MAL NO MODIFICA LA VARIABLE. 
+
+*/

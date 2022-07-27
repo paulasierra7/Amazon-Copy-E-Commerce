@@ -4,7 +4,7 @@
     color: rgb(54, 148, 198);
 }
 
-/* cartWidget */
+/* cartWidget.js */
 .cartWidget-Container{
     display: flex;
     justify-content: flex-start;
@@ -16,8 +16,13 @@
     width: 25;
 }
 
-.cartWidget-precio {
+.cartWidget-cantidad {
     color: aliceblue;
     font-family: Arial, Helvetica, sans-serif;
     padding: 10px 10px 40px 10px;
+}
+
+/* ItemCount.js */
+.contador-Card {
+    background-color: red;
 }
