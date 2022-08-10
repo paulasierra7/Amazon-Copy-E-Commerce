@@ -1,30 +1,50 @@
-import React, { useState } from 'react';
 import App from '../App';
+import { useState, useEffect } from "react" 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'reactstrap';
-import { ButtonGroup } from 'reactstrap';
-import { Card } from 'reactstrap';
-import { CardBody } from 'reactstrap';
-import { CardTitle } from 'reactstrap';
-import { CardSubtitle } from 'reactstrap';
-import "./estilos.css";
+import { Button, ButtonGroup, Card, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+
+import '../estilos.css';
 
 
-const ItemCount = (props) => {
-    const [contadorInicial, contadorFinal] = useState(0);
+const ItemCount = ({onAdd, initial, stock}) => {
+    const [titulo, setTitulo] = useState("Cargando...")
+    const [contador,setContador] = useState(0)
+    const [confirmed, setConfirmed] = useState(false)
 
-    const aumentarContador= () => {
-        contadorFinal(contadorInicial+1)
+    useEffect(()=> {
+        setTitulo("cargando")
+
+        const simulacroPedido = new Promise ((res,rej)=>{
+            setTimeout(()=>{
+                res("Producto cargado - todo bien")
+            },2000)
+        })
+        
+        simulacroPedido.then((resultado)=>{
+            setTitulo("Producto cargado bien")
+            console.log({resultado})
+        })
+        simulacroPedido.catch((error)=>{})
+
+    },[confirmed])
+
+
+    const sumar = () => {
+        setContador(contador + 1)
     }
-    const disminuirContador= () => {
-        contadorFinal(contadorInicial-1)
-        if (contadorInicial <= 0) {
-            contadorFinal(0)
+    const restar = () => {
+        setContador(contador - 1)
+        if (contador <= 0) {
+            setContador(0)
         }
     }
-    const resetearContador = () => {
-        contadorFinal(contadorInicial*0)
+    const resetear = () => {
+        setContador(contador*0)
     }
+    const confirmar = () => {
+        setConfirmed(!confirmed)
+    }
+
 
     return (
         <>
@@ -37,28 +57,28 @@ const ItemCount = (props) => {
             >
             <CardBody>
                 <CardTitle tag="h5">
-                Has añadido {contadorInicial} prendas 🛒
+                {titulo}
                 </CardTitle>
                 <CardSubtitle
                 className="mb-2 text-muted"
                 tag="h6"
                 >
-                Escoge la cantidad de prendas a comprar para añadir al carrito 
+                    Has añadido {contador} prendas al carrito de compras 🛒
                 </CardSubtitle>
                     <ButtonGroup>
-                        <Button onClick={disminuirContador}>
+                        <Button onClick={restar}>
                             - 
                         </Button>
-                        <Button onClick={resetearContador}>
+                        <Button onClick={resetear}>
                             reset 
                         </Button>
-                        <Button onClick={aumentarContador}>
+                        <Button onClick={sumar}>
                             + 
                         </Button>
                     </ButtonGroup>
+                    <Button onClick={confirmar}>confirmar</Button>
             </CardBody>
         </Card>
-        <h1>Has añadido {contadorInicial} prendas 🛒</h1>
         </>
     )
 }

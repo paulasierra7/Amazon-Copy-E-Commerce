@@ -3,7 +3,7 @@ import React from 'react';
 
 import ReactDOM from 'react-dom/client';
 import App from '../src/App'; //carga la app que hice
-import './components/estilos.css'; //carga el css 
+import '../src/estilos.css'; //carga el css 
 import 'bootstrap/dist/css/bootstrap.min.css'; //esto carga bootstrap
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

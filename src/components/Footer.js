@@ -1,18 +1,12 @@
-// import Nav from "./Nav";
+import Nav from "./Nav";
 
-// const Footer = (props) => {
+const Footer = () => {
 
-//     console.log(props)
-//     console.log(props.nombre)
+    return (
+        <footer>
+            <Nav type="footer" />
+        </footer>
+    )
+}
 
-//     return (
-//         <footer>
-//             <p>Bienvenido {props.nombre}</p>
-//             <Nav 
-//                 type="footer" 
-//             />
-//         </footer>
-//     )
-// }
-
-// export default Footer
+export default Footer

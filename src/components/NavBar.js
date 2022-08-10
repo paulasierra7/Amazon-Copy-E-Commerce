@@ -1,10 +1,4 @@
-// import { Navbar, NavbarBrand } from "react-bootstrap"
-// import Nav from "./Nav"
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import CartWidget from "./CartWidget";
-
+import { Nav, Navbar, NavbarBrand, Container } from "react-bootstrap"
 
 const Header = () => {
 
@@ -12,7 +6,7 @@ const Header = () => {
         <>
         <Navbar bg="dark" variant="dark">
             <Container>
-            <Navbar.Brand href="#home">
+            <NavbarBrand href="#home">
                 <img
                     alt="logo"
                     src="./logo192.png"
@@ -22,12 +16,13 @@ const Header = () => {
                     }}
                 />    
                 Mercado Rockstar
-            </Navbar.Brand>
+            </NavbarBrand>
             <Nav>
                 <Nav.Link href="#shop">Tienda</Nav.Link>
                 <Nav.Link href="#cart">Carrito</Nav.Link>
-                <CartWidget 
-                />
+                <span className="material-symbols-outlined">
+                    shopping_cart
+                </span>
                 <Nav.Link href="#profile">Perfil</Nav.Link>
             </Nav>
             </Container>

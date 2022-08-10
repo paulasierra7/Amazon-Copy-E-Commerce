@@ -1,23 +1,19 @@
+import { useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/NavBar";
-import ItemListContainer from "./components/ItemListContainer";
-import ItemCount from "./components/ItemCount";
-import React, { useState } from 'react';
+import Main from "./components/Main";
+// import ItemListContainer from "./components/ItemListContainer";
 
 
-const App = ({contadorInicial}) => { 
+const App = () => { 
     
-
     return (
         <> 
-            <Header 
-                contador = {contadorInicial}
-            />
-            <ItemListContainer 
-                nombre = "Horacio"
-                type = "greeting"
-            />
-            <ItemCount/>
+            <Header />
+            <Main />
+            <Footer />
+            {/* <ItemListContainer /> */}
+            
         </>
     )
 }
