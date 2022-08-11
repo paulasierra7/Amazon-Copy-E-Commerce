@@ -2,6 +2,10 @@ import App from '../App';
 import { useState, useEffect } from "react" 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, ButtonGroup, Card, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import { customFetch } from './customFetch';
+import { products } from '../productos';
+import { Spinner } from 'reactstrap';
+
 
 import '../estilos.css';
 
@@ -10,19 +14,29 @@ const ItemCount = ({onAdd, initial, stock}) => {
     const [titulo, setTitulo] = useState("Cargando...")
     const [contador,setContador] = useState(0)
     const [confirmed, setConfirmed] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [listProducts, setListProducts] = useState([])
+
+
+    useEffect (() => {
+        customFetch(products)
+            .then(data => {
+                setLoading(true)
+                setListProducts(data)})
+
+    },[])
 
     useEffect(()=> {
-        setTitulo("cargando")
+        setTitulo("cargando tu pokemon")
 
         const simulacroPedido = new Promise ((res,rej)=>{
             setTimeout(()=>{
                 res("Producto cargado - todo bien")
-            },2000)
+            },1000)
         })
         
         simulacroPedido.then((resultado)=>{
-            setTitulo("Producto cargado bien")
-            console.log({resultado})
+            setTitulo("Done")
         })
         simulacroPedido.catch((error)=>{})
 
@@ -48,37 +62,32 @@ const ItemCount = ({onAdd, initial, stock}) => {
 
     return (
         <>
-        <Card
+        {/* <Card
                 color="dark"
                 inverse
                 style={{
                     width: '18rem'
                 }}
             >
-            <CardBody>
-                <CardTitle tag="h5">
-                {titulo}
-                </CardTitle>
-                <CardSubtitle
-                className="mb-2 text-muted"
-                tag="h6"
-                >
-                    Has añadido {contador} prendas al carrito de compras 🛒
+            <CardBody> */}
+                <CardSubtitle>
+                { !loading && <Spinner /> }
                 </CardSubtitle>
                     <ButtonGroup>
-                        <Button onClick={restar}>
+                        {/* <Button onClick={restar}>
                             - 
                         </Button>
-                        <Button onClick={resetear}>
-                            reset 
-                        </Button>
+                        <p>
+                        {contador}
+                        </p>
                         <Button onClick={sumar}>
                             + 
-                        </Button>
+                        </Button> */}
                     </ButtonGroup>
-                    <Button onClick={confirmar}>confirmar</Button>
-            </CardBody>
-        </Card>
+            {/* </CardBody>
+        </Card> */}
+        <Button onClick={confirmar}>Ver en detalle</Button>
+
         </>
     )
 }

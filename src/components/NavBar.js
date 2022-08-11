@@ -9,13 +9,12 @@ const Header = () => {
             <NavbarBrand href="#home">
                 <img
                     alt="logo"
-                    src="./logo192.png"
+                    src="./pokemonLogo.svg.png"
                     style={{
-                    height: 40,
-                    width: 40
+                    height: 50,
+                    width: 200
                     }}
                 />    
-                Mercado Rockstar
             </NavbarBrand>
             <Nav>
                 <Nav.Link href="#shop">Tienda</Nav.Link>

@@ -9,8 +9,7 @@ const Main = () => {
 
   return (
     <main>
-        <h1>Bienvenidos! :) </h1>
-        <ItemCount onAdd={onAdd} init={1} stock={5} />
+        {/* <ItemCount onAdd={onAdd} init={1} stock={5} /> */}
         <ItemListContainer/>
     </main>
   )
