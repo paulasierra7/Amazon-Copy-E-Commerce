@@ -86,8 +86,6 @@ const ItemCount = ({onAdd, initial, stock}) => {
                     </ButtonGroup>
             {/* </CardBody>
         </Card> */}
-        <Button onClick={confirmar}>Ver detalle</Button>
-
         </>
     )
 }

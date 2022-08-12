@@ -6,7 +6,7 @@ import ItemDetailContainer from './ItemDetailContainer';
 
 const ItemList = () => {
     const [allPokemons, setAllPokemons] = useState([])
-    const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=15')
+    const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=30')
 
     const getAllPokemons = async () => {
         const res = await fetch(loadMore)
@@ -25,7 +25,7 @@ const ItemList = () => {
         createPokemonObject(data.results)
     }
 
-    useEffect(() => {
+    useEffect(() => { 
     getAllPokemons()
     }, [])
 

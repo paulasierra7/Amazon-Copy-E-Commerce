@@ -1,4 +1,7 @@
 import ItemCount from "./ItemCount";
+import { Button} from 'reactstrap';
+import { Link } from 'react-router-dom';
+
 
 const Item = ({id, image, name, type, _callback }) => {
     const style = type + " thumb-container";
@@ -9,13 +12,17 @@ const Item = ({id, image, name, type, _callback }) => {
             <div className="detail-wrapper">
                 <h3>{name}</h3>
                 <small>Type: {type}</small>
-            </div>
-            <ItemCount/>
+            </div> 
+            <Button>Ver detalle</Button>
+            {/* <Link to={"/ItemDetail" + name}>
+                <Button>Ver detalle</Button>
+            </Link>  */}
         </div>
     )
 }
 
 export default Item
+
 
 
 
