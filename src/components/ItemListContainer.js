@@ -32,29 +32,3 @@ const ItemListContainer = () => {
 
 export default ItemListContainer
 
-
-
-// const ItemListContainer = () => {
-//     const [listProducts, setListProducts] = useState([])
-//     const [loading, setLoading] = useState(false)
-
-//     useEffect (() => {
-//         customFetch(products)
-//             .then(data => {
-//                 setLoading(true)
-//                 setListProducts(data)})
-
-//     },[])
-
-//     return (
-//         <>
-//             { !loading && <Spinner /> }
-//             { loading && <ItemList listProducts = {listProducts} /> }
-//         </>
-//     )
-// }
-
-// export default ItemListContainer
-
-
-

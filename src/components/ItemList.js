@@ -1,9 +1,12 @@
 import Item from './Item';
 import { useEffect, useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'reactstrap';
+import ItemDetailContainer from './ItemDetailContainer';
 
 const ItemList = () => {
     const [allPokemons, setAllPokemons] = useState([])
-    const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=9')
+    const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=15')
 
     const getAllPokemons = async () => {
         const res = await fetch(loadMore)
@@ -41,9 +44,18 @@ const ItemList = () => {
                 />)}
             
             </div>
-            <button className="load-more" onClick={() => getAllPokemons()}>Load more</button>
+            <Button color="secondary" size="lg" onClick={() => getAllPokemons()}>¿No sale tu Pokemon? Cargar mas</Button>
         </div>
         </div>
+
+        {allPokemons.map( (pokemonStats, index) => 
+                <ItemDetailContainer
+                key={index}
+                id={pokemonStats.id}
+                image={pokemonStats.sprites.other.dream_world.front_default}
+                name={pokemonStats.name}
+                type={pokemonStats.types[0].type.name}
+                />)}
         </>
     )
 }

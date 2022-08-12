@@ -1,9 +1,7 @@
-import { products } from "../productos"
-
-export const customFetch = () => {
+export const customFetch = ({id, image, name, type, _callback }) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(products)
+            resolve({id, image, name, type, _callback })
         }, 2000)
     })
-}
+} 
