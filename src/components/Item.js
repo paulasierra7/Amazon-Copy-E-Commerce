@@ -13,10 +13,9 @@ const Item = ({id, image, name, type, _callback }) => {
                 <h3>{name}</h3>
                 <small>Type: {type}</small>
             </div> 
-            <Button>Ver detalle</Button>
-            {/* <Link to={"/ItemDetail" + name}>
+            <Link to={"/itemdetail/" + id}>
                 <Button>Ver detalle</Button>
-            </Link>  */}
+            </Link> 
         </div>
     )
 }
