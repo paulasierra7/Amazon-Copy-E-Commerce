@@ -9,7 +9,7 @@ const Header = () => {
             <NavbarBrand href="#home">
                 <img
                     alt="logo"
-                    src="./pokemonLogo.svg.png"
+                    src="./pokemonLogo.png"
                     style={{
                     height: 50,
                     width: 200
