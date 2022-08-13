@@ -11,6 +11,7 @@ const ItemListContainer = () => {
 
     const [listProducts, setListProducts] = useState([])
     const [loading, setLoading] = useState(false)
+    // const [productos, setProductos] = useState([])
 
     useEffect (() => {
         customFetch(products)
@@ -19,7 +20,6 @@ const ItemListContainer = () => {
                 setListProducts(data)})
 
     },[])
-
 
     return (
         <>
@@ -31,4 +31,3 @@ const ItemListContainer = () => {
 }
 
 export default ItemListContainer
-

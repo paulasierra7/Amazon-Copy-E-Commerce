@@ -47,56 +47,34 @@ const ItemList = () => {
             <Button color="secondary" size="lg" onClick={() => getAllPokemons()}>¿No sale tu Pokemon? Cargar mas</Button>
         </div>
         </div>
-
-        {allPokemons.map( (pokemonStats, index) => 
-                <ItemDetailContainer
-                key={index}
-                id={pokemonStats.id}
-                image={pokemonStats.sprites.other.dream_world.front_default}
-                name={pokemonStats.name}
-                type={pokemonStats.types[0].type.name}
-                />)}
         </>
     )
 }
 export default ItemList
 
 
-// import { customFetch } from './customFetch';
-// import { CardGroup, Card, CardImg, CardTitle, CardSubtitle, CardText, Button, CardBody } from 'reactstrap';
-// import { products } from '../productos';
 
-// const ItemList = ({listProducts}) => {
+// //profe
+// const pedido = fetch("https://jsonplaceholder.typicode.com/users")
 
-//     //     return (
-//     //         <>
-//     //             { listProducts.map ( product => 
-//     //                 <Item 
-//     //                     key={product.id} product={product} 
-//     //                 /> 
-//     //             )}
-//     //         </>
-//     //     )
-//     // }
-    
-//     // export default ItemList
+// .then((resultado)=>{
+//     console.log(resultado)
+
+//     const productos_con_formato = resultado.json()
+// })
+
+// .catch((error)=>{
+//     console.log("err or")
+// })
 
 
+// //profe
+// const pedido = fetch("https://jsonplaceholder.typicode.com/users")
 
+// .then((resultado => resultado.json()))
+// .then((resultado) => console.log(resultado))
+// })
 
-
-
-
-// import Item from "./Item"
-
-// const ItemList = ({productos}) => {
-
-//     <section>
-//     return (
-//         {productos.map((producto) => {
-//         return <Item />
-//     })}
-//     </section>
-// }
-
-// export default ItemList
+// .catch((error)=>{
+//     console.log("err or")
+// })

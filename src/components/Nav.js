@@ -1,23 +1,47 @@
-const Nav = (parametros) => {
+import { Link } from "react-router-dom"
+import { Navbar, Container } from "react-bootstrap"
 
-    if(parametros.type == "header"){
+const BarraNav = ({ type }) => {
+
+    if(type === "header"){
         return (
             <nav>
-                <Nav.Link href="#home">Tienda</Nav.Link>
-                <Nav.Link href="#features">Carrito</Nav.Link>
-                <Nav.Link href="#pricing">Contacto</Nav.Link>
+            <Navbar fixed="top" bg="dark" variant="dark">
+            <Link to="/home/">
+                <img
+                    alt="logo"
+                    src="./pokemonLogo.png"
+                    style={{
+                    height: 40,
+                    width: 140
+                    }}
+                />    
+            </Link>
+            <Container className="justify-content-end">
+            
+                <Link to ="/carrito/">Carrito</Link>
+                <Link to ="/carrito/">
+                    <span className="material-symbols-outlined">
+                        shopping_cart
+                    </span>
+                </Link>
+                <Link to ="/perfil/">Perfil</Link>
+                </Container>
+            </Navbar>
             </nav>
         )
     } else {
         return (
             <nav>
-                <a href="#">link</a>
-                <a href="#">link</a>
-                <a href="#">link</a>
+            <Navbar  bg="dark" variant="dark">
+                <Container className="justify-content-end">
+                <Link to ="/carrito/">Carrito</Link>
+                <Link to ="/perfil/">Perfil</Link>
+                </Container>
+            </Navbar>
             </nav>
         )
     }
 }
 
-export default Nav
-
+export default BarraNav
