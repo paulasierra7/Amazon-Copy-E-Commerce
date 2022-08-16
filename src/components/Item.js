@@ -1,4 +1,3 @@
-import ItemCount from "./ItemCount";
 import { Button} from 'reactstrap';
 import { Link } from 'react-router-dom';
 

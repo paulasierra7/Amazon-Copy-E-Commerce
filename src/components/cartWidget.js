@@ -1,4 +1,4 @@
-import './estilos.css'
+import '../estilos.css';
 import ItemCount from './ItemCount'
 import App from '../App'
 

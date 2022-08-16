@@ -1,25 +1,32 @@
-import {useState, useEffect } from 'react'
-import { customFetch } from './customFetch'
-import ItemDetail from './ItemDetail'
+import ItemDetail from './ItemDetail';
+import { useEffect, useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useParams } from 'react-router-dom';
 
-const ItemDetailContainer = () => {
-    const [listProduct, setListProduct] = useState({}) 
+const ItemDetailContainer = ({ id, image, name, type, _callback }) => {
+    const [listProduct, setListProduct] = useState([]) 
     const [loading, setLoading] = useState(false)
+    const {index} = useParams()
 
     useEffect(() => {
-        setLoading(true)
-            fetch('https://pokeapi.co/api/v2/pokemon?limit=30')
+            fetch(`https://pokeapi.co/api/v2/pokemon/${index}`)
                 .then(res=>res.json())
-                .then(lista=>{
-                        setLoading(false)
-                        setListProduct(lista[0])
-                });
-        }, [])
+                .then((result) => {
+                    setLoading(true);
+                    setListProduct(result);
+                })
+                console.log(listProduct)
+        }, [index])
 
+        
     return (
         <>
-            {!loading ? <ItemDetail listProduct ={listProduct}  /> : <p>Cargando...</p>}
-            <div>ItemDetailContainer</div>
+            {
+            !loading ? 
+            <ItemDetail listProduct ={listProduct}  /> 
+            : 
+            <p>Cargando...</p>}
+            <div>ItemDetailContainer {index} </div>
         </>
     )
 }

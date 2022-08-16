@@ -1,8 +1,8 @@
 import Item from './Item';
 import { useEffect, useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
-import ItemDetailContainer from './ItemDetailContainer';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const ItemList = () => {
     const [allPokemons, setAllPokemons] = useState([])
@@ -23,6 +23,7 @@ const ItemList = () => {
         })
         }
         createPokemonObject(data.results)
+        console.log(data.results)
     }
 
     useEffect(() => { 
@@ -47,6 +48,7 @@ const ItemList = () => {
             <Button color="secondary" size="lg" onClick={() => getAllPokemons()}>¿No sale tu Pokemon? Cargar mas</Button>
         </div>
         </div>
+        
         </>
     )
 }

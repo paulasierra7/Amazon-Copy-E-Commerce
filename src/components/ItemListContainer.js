@@ -5,27 +5,25 @@ import Item from './ItemList'
 import { customFetch } from './customFetch';
 import { useEffect, useState } from 'react'
 import { products } from '../productos';
+import ItemDetailContainer from './ItemDetailContainer';
 
 
 const ItemListContainer = () => {
-
-    const [listProducts, setListProducts] = useState([])
     const [loading, setLoading] = useState(false)
-    // const [productos, setProductos] = useState([])
 
     useEffect (() => {
         customFetch(products)
             .then(data => {
                 setLoading(true)
-                setListProducts(data)})
+                })
 
     },[])
 
     return (
         <>
         { !loading && <Spinner /> }
-        { loading && <ItemList listProducts = {listProducts} /> }
-        <Item />
+        <ItemList />
+        <ItemDetailContainer/>
         </>
     )
 }
