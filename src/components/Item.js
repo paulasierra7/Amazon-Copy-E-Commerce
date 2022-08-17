@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { Row, Col, CardGroup, Card, CardImg, CardTitle, CardSubtitle, CardText, Button, CardBody } from 'reactstrap';
-
+import { products } from "../productos";
 
 const Item = ({ producto }) => {
 

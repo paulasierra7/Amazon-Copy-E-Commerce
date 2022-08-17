@@ -2,50 +2,44 @@ import '../estilos.css';
 import ItemList from './ItemList';
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
-import { customFetch } from './customFetch';
 import { products } from '../productos';
 import { Spinner } from 'reactstrap';
-import CustomLoader from "./CustomLoader"
+import { customFetch } from './customFetch';
 import Page from "./Page"
+
 
 const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
-    const { id } = useParams()
+    const { category } = useParams()
 
     useEffect(() => {
+        setLoading(true)
+        customFetch(products)
+            .then(res => {
+                if (category) {
+                    setLoading(false)
+                    setProductos(res.filter(prod => prod.category === category))
+                } else {
+                    setLoading(false)
+                    setProductos(res)
+                }
+            })
+        }, [category])
 
-        const pedido = new Promise((res, rej) => {
-            setTimeout(() => {
-                res(products)
-            }, 3000)
-        })
-
-        pedido.then((resultado) => {
-            setProductos(resultado)
-            setLoading(false)
-        })
-
-        pedido.catch((error) => {
-            console.log("Termino el pedido mal")
-        })
-
-    }, [])
-
-
-    // if (loading) {
-    //     return (
-    //         <CustomLoader />
-    //     )
-    // } else {
-        return (
-            <Page titulo="Catalogo" subtitulo="Todos los productos en un solo lugar">
-            {/* {loading && <Spinner />} 
-            {!loading && }*/}
+        return(
+            <>
+                {!loading && <Spinner />
+                ?
+            <Page titulo="."  subtitulo="Todos los productos en un solo lugar">
             <ItemList productos={productos} />
             </Page>
-        )
-    }
-
+            :
+            <h1>.</h1>&&<p>Estamos cargando tus productos...</p> && <Spinner />
+            }
+            {/* <ItemCount initial={1} stock={5} onAdd={() => {}}/> */}
+        </>
+    )  
+}
 export default ItemListContainer

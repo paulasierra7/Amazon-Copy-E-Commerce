@@ -24,7 +24,7 @@ const BarraNav = ({ type }) => {
                     <Link to ="/category/camisas">Camisas</Link>
                     <Link to ="/category/relojes">Relojes</Link>
                     <Link to ="/category/bufandas">Bufandas</Link>
-                    <Link to ="/category/zapatos">Zapatos</Link>
+                    <Link to ="/category/tenis">Zapatos</Link>
                     <Link to ="/category/bolsos">Bolsos</Link>
                     <CartWidget/>
 

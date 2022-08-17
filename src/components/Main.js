@@ -6,14 +6,18 @@ import Perfil from "./Perfil"
 
 const Main = () => {
 
+  const onAdd = () => {
+    console.log("On Add")
+}
+
   return (
     
     <main>
       <Routes>
           <Route path="/" element={<ItemListContainer/>}/>
-          <Route path="/categoria/:id" element={<ItemListContainer/>}/>
-          <Route path="/item/:id" element={ <ItemDetailContainer/> } />           
-          <Route path="/carrito" element={<Carrito/>}/>
+          <Route path="/category/:category" element={<ItemListContainer/>}/>
+          <Route path="/detalle/:id" element={ <ItemDetailContainer/> } />           
+          <Route path="/cart" element={<Carrito/>}/>
           <Route path="/perfil" element={<Perfil/>}/>
         </Routes>
     </main>

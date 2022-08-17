@@ -1,36 +1,56 @@
 import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail"
 import { useParams } from "react-router-dom";
+import { products } from '../productos';
+import { customFetch } from "./customFetch";
+import { Spinner } from "reactstrap";
 
 const ItemDetailContainer = () => {
 
-    const [item, setItem] = useState({});
-    const { id } = useParams();
+    const [item, setItem] = useState({})
+    const [loading, setLoading] = useState(true)
+
+    const { id } = useParams()
 
     useEffect(() => {
-
-        //https://ghibliapi.herokuapp.com/films/2baf70d1-42bb-4437-b551-e5fed5a87abe
-        const pedido = fetch("https://fakestoreapi.com/products/" + id)
-
-        pedido
-            .then((respuesta) => {
-                return respuesta.json()
+        setLoading(true)
+        customFetch(products)
+            .then(res => {
+                setLoading(false)
+                setItem(res.find(item => item.id === parseInt(id)))
             })
-            .then((respuesta) => {
-                setItem(respuesta)
-            })
-            .catch(error => console.log(error))
+    }, [])
 
-    }, [id])
-
-
-    return (
+    return(
         <>
-            <div className='container'>
-                <ItemDetail item={item} />
-            </div>
+            {!loading ? <ItemDetail item={item} /> : <h1> Cargando...</h1>&& <Spinner/>}
         </>
-    );
+    )
 }
 
-export default ItemDetailContainer;
+export default ItemDetailContainer
+
+// useEffect(() => {
+//             setLoading(true)
+//             const pedido = fetch(products + id)
+    
+//             pedido
+//                 .then((respuesta) => {
+//                     return respuesta.json()
+//                 })
+//                 .then((respuesta) => {
+//                     setItem(respuesta)
+//                 })
+//                 .catch(error => console.log(error))
+    
+//         }, [id])
+    
+    
+//         return (
+//             <>
+//                 <div className='container'>
+//                     <ItemDetail item={item} />
+//                 </div>
+//             </>
+//         );
+//     }
