@@ -1,33 +1,51 @@
 import '../estilos.css';
 import ItemList from './ItemList';
-import { Spinner } from 'reactstrap';
-import Item from './ItemList'
-import { customFetch } from './customFetch';
 import { useEffect, useState } from 'react'
+import { useParams } from "react-router-dom"
+import { customFetch } from './customFetch';
 import { products } from '../productos';
-import ItemDetailContainer from './ItemDetailContainer';
-import { useParams } from 'react-router-dom';
+import { Spinner } from 'reactstrap';
+import CustomLoader from "./CustomLoader"
+import Page from "./Page"
 
 const ItemListContainer = () => {
-    const [loading, setLoading] = useState(false)
-    const { productoid } = useParams()
+
+    const [productos, setProductos] = useState([])
+    const [loading, setLoading] = useState(true)
+    const { id } = useParams()
+
+    useEffect(() => {
+
+        const pedido = new Promise((res, rej) => {
+            setTimeout(() => {
+                res(products)
+            }, 3000)
+        })
+
+        pedido.then((resultado) => {
+            setProductos(resultado)
+            setLoading(false)
+        })
+
+        pedido.catch((error) => {
+            console.log("Termino el pedido mal")
+        })
+
+    }, [])
 
 
-    useEffect (() => {
-        customFetch(products)
-            .then(data => {
-                setLoading(true)
-                })
-
-    },[])
-
-    return (
-        <>
-        { !loading && <Spinner /> }
-        <ItemList />
-        <ItemDetailContainer/>
-        </>
-    )
-}
+    // if (loading) {
+    //     return (
+    //         <CustomLoader />
+    //     )
+    // } else {
+        return (
+            <Page titulo="Catalogo" subtitulo="Todos los productos en un solo lugar">
+            {/* {loading && <Spinner />} 
+            {!loading && }*/}
+            <ItemList productos={productos} />
+            </Page>
+        )
+    }
 
 export default ItemListContainer

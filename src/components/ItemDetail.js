@@ -1,25 +1,24 @@
-import { Button} from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { useContext } from "react"
+import Contador from "./Contador"
+import { contexto } from "./CustomProvider"
 
-const ItemDetail = ({listProduct, id, image, name, type, _callback }) => {  
-    return 
-    <> 
-        <div className>
-            <h4>Detalle de tu pokemon</h4>
-            <div className="number"><small>#0{id}</small></div>
-            <img src={image} alt={listProduct.name} />
-            <div className="detail-wrapper">
-                <h3>{name}</h3>
-                <small>Type: {type}</small>
-                <p>Esta es la información a detalle del pokemon</p>
-            </div> 
-            <Link to={"/itemDetailContainer/" + id}>
-                <Button>Ver detalle</Button>
-            </Link> 
-            <h1>hola {name}</h1>
+const ItemDetail = ({ item }) => {
+
+    const { agregarProducto } = useContext(contexto)
+
+    const onAdd = (contador) => {
+        item.cantidad = contador
+        agregarProducto(item)
+    }
+
+    return (
+        <div>
+            <h1>{item.title}</h1>
+            <img className="detail-image" src={item.image} alt="" />
+            <p>{item.description}</p>
+            <Contador onAdd={onAdd} />
         </div>
-    </>
+    )
 }
+
 export default ItemDetail
-
-

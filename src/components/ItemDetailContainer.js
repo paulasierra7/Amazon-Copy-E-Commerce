@@ -1,33 +1,36 @@
-import ItemDetail from './ItemDetail';
-import { useEffect, useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import ItemDetail from "./ItemDetail"
+import { useParams } from "react-router-dom";
 
-const ItemDetailContainer = ({ id, image, name, type, _callback }) => {
-    const [listProduct, setListProduct] = useState([]) 
-    const [loading, setLoading] = useState(false)
-    const { productoid } = useParams()
+const ItemDetailContainer = () => {
+
+    const [item, setItem] = useState({});
+    const { id } = useParams();
 
     useEffect(() => {
-            fetch(`https://pokeapi.co/api/v2/pokemon?limit=30`)
-                .then(res=>res.json())
-                .then((result) => {
-                    setLoading(true);
-                    setListProduct(result);
-                })
-        }, [])
 
-        
+        //https://ghibliapi.herokuapp.com/films/2baf70d1-42bb-4437-b551-e5fed5a87abe
+        const pedido = fetch("https://fakestoreapi.com/products/" + id)
+
+        pedido
+            .then((respuesta) => {
+                return respuesta.json()
+            })
+            .then((respuesta) => {
+                setItem(respuesta)
+            })
+            .catch(error => console.log(error))
+
+    }, [id])
+
+
     return (
         <>
-            {
-            !loading ? 
-            <ItemDetail listProduct ={listProduct}  /> 
-            : 
-            <p>Cargando...</p>}
-            <div>ItemDetailContainer </div>
+            <div className='container'>
+                <ItemDetail item={item} />
+            </div>
         </>
-    )
+    );
 }
 
-export default ItemDetailContainer
+export default ItemDetailContainer;

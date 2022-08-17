@@ -5,27 +5,13 @@ import BarraNav from "./Nav";
 const Header = () => {
 
     return (
-        <>
-        <Navbar bg="dark" variant="dark">
-            <Container>
-            <Link to="/">
-                <img
-                    alt="logo"
-                    src="./pokemonLogo.png"
-                    style={{
-                    height: 40,
-                    width: 140
-                    }}
-                />    
-            </Link>
-            <BarraNav 
-                type="header"
-                className="BarraNav"
-            />
-            </Container>
-        </Navbar>
-        </>
-    );
+            <Navbar>
+                <BarraNav 
+                    type="header"
+                    className="BarraNav"
+                />
+            </Navbar>
+        )
     }
 
-export default Header;
+export default Header
