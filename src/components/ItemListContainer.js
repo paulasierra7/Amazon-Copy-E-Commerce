@@ -32,7 +32,7 @@ const ItemListContainer = () => {
             <>
                 {!loading && <Spinner />
                 ?
-            <Page titulo="."  subtitulo="Todos los productos en un solo lugar">
+            <Page titulo="Catalogo"  subtitulo="Todos los productos en un solo lugar">
             <ItemList productos={productos} />
             </Page>
             :

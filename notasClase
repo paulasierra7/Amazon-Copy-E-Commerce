@@ -257,3 +257,127 @@ contador++ (SI AUMENTA Y SI CAMBIA EL CONTADOR)
 contador + 1 MAL NO MODIFICA LA VARIABLE. 
 
 */
+
+
+
+/* Clase events:
+//* EVENTOS
+Tddas las funciones returnan undefined si no tienen return.
+
+
+Adentro no puede estar una funcion ejecutada {handleClick()} porque se ejecutara antes del on Click.
+
+const handleClick = () => {
+        console.log("Click")
+    }
+
+    ESTO ESTA MAL 👇
+
+    <button onClick={handleClick()}> // ACA VA EL RESULTADO DE LA FUNCION ERROR
+
+
+
+    ESTO ESTA BIEN 👇
+
+    <button onClick={handleClick}>  // ACA VA LA FUNCION SIN RESULTADO PARA QUE SE EJECUTE
+    
+    
+
+    ESTO ESTA BIEN pero esta raro, no lo uses👇 Si no puedes pasarle un parametro a otroa funcion lo puedes meter dento de otra funcion como abajo
+    const handleClick = () => {
+        console.log("Click")
+
+        return () => {
+            console.log("Segundo")
+        }
+    }
+    
+    <button onClick={handleClick()}> // aqui si se ejecutara esto, pero se ejcuta la segunda no la primera.
+    
+
+
+
+//* CUANDO ESCRIBES e COMO CONSOLE LOG TE SALE TODA LA INFO DETALALDA IMPORTANTE DEL EVENTO
+//* SUPER UTILLLLLL
+
+    const Carrito = () => {
+
+    const handleClick = (e) => {
+        console.log(e)
+    }
+
+    const handleChange= (e) => {
+        console.log(e)
+    }
+
+    <input type="text" onChange={handleChange}/>
+    <button onClick={handleClick}> click </button>
+
+    
+//* TE AYUDA POR EJEMPLO CON:
+    event.preventDefault()
+    event.stopPropagation() // Detiene la propagacion del evento. 
+    event.target() //te dice que disparo el evento.
+
+
+//*  event.preventDefault()
+
+
+
+//* event.target() 
+    aca saldria:     <button onClick={handl Click}> click </button>
+    osea el evento salio de un boton. 
+    puedes estar mas seguro poniendo  event.currenttarget() 
+
+//*   e.stopPropagation() 
+    // con esto evitas que se dispare 
+    handleClickDiv y handleClick solo se dispara handleClick
+    Recuerda que primero se dispara el elemento y luego los de arriba, incluso hasta el elemento raiz (html).
+    Hay dos tipos: Bubbling y Capturing. 
+
+
+    const Carrito = () => {
+
+    const handleClick = (e) => {
+        e.stopPropagation()
+        console.log("Click en el boton")
+        console.log(e)
+    }
+
+    const handleClickDiv = (e) => {
+        console.log("Click Div")
+        console.log (e.currentTarget)
+    }
+
+    const handleChange= (e) => {
+        console.log(e.target)
+    }
+    
+//* PROPAGACION DE EVENTOS: 
+    Primero se dispara el evento del elemento y luego puede seguir disparando los eventos que estan ENCIMA DE EL entonces para evitar
+    eso usas: event.stopPropagation()
+    
+    
+    
+    
+    
+//* STATE UPLIFITING: 
+//* PASAR PROPS DE COMPONENTES HIJOS A COMPNENTES PADRES.
+
+    Puedes modoficiar un componnete padre desde un componente hijo
+    PERO DEBES: 
+
+    1. El componente padre debe tener un estado propio useState para sincronizar a los hijos. 
+    2. El componente padre de ebe tener un componente call back:
+        () => {} debe haber una funcion o metodo adentro.
+    3. Esa funcion debes pasarla a todos los chiquis. 
+    4. Recibis esa funcion y ya. 
+    5. El chiqui DEBE pasar al padre a traes de una funcion. 
+
+    
+    
+    
+    
+    
+    
+    */
