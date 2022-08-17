@@ -7,7 +7,7 @@ const BarraNav = ({ type }) => {
         return (
             <nav>
             <Navbar fixed="top" bg="dark" variant="dark">
-            <Link to="/home/">
+            <Link to="/">
                 <img
                     alt="logo"
                     src="./pokemonLogo.png"
@@ -19,6 +19,8 @@ const BarraNav = ({ type }) => {
             </Link>
             <Container className="justify-content-end">
             
+                <Link to ="/category/:productoid">Categoria 1</Link>
+                <Link to ="/category/:productoid">Categoria 2</Link>
                 <Link to ="/carrito/">Carrito</Link>
                 <Link to ="/carrito/">
                     <span className="material-symbols-outlined">
@@ -35,7 +37,6 @@ const BarraNav = ({ type }) => {
             <nav>
             <Navbar  bg="dark" variant="dark">
                 <Container className="justify-content-end">
-                <Link to ="/carrito/">Carrito</Link>
                 <Link to ="/perfil/">Perfil</Link>
                 </Container>
             </Navbar>

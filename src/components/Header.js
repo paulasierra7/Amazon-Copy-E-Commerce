@@ -8,7 +8,7 @@ const Header = () => {
         <>
         <Navbar bg="dark" variant="dark">
             <Container>
-            <Link to="/home/">
+            <Link to="/">
                 <img
                     alt="logo"
                     src="./pokemonLogo.png"

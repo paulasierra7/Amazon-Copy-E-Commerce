@@ -18,7 +18,7 @@ const App = () => {
             <Main/>
             <Routes>
                 <Route  exact path="/" element={ <ItemListContainer/> }  />
-                <Route exact path="/itemdetail/:id" element={ <ItemDetailContainer/> } />           
+                <Route exact path="/itemdetail/:index" element={ <ItemDetailContainer/> } />           
             </Routes>
             <Footer />
             </BrowserRouter>
