@@ -23,6 +23,9 @@ const Item = ({ producto }) => {
               <CardTitle tag="h5">
                 {producto.product}
               </CardTitle>
+              <CardText>
+                Color: {producto.color}
+              </CardText>
               <CardSubtitle
                 className="mb-2 text-muted"
                 tag="h6"

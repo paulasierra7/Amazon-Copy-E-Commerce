@@ -25,14 +25,18 @@ const ItemCount = ({onAdd}) => {
 
     return (
         <div>
+            <br />
             <input onChange={handleChange} type="range" step={1} />
             <br />
+            <br />
+
             <ButtonGroup>
                 <Button color="danger" outline onClick={restar}>-</Button>
                 <h5 className='text-danger'>{estadoPadre}</h5>
                 <Button color="danger" outline onClick={sumar}>+</Button>
                 </ButtonGroup>
                 <div>
+                <br />
                     <NavLink to="/cart/">
                         <Button color="danger" onClick={onAdd}>Agregar al carrito</Button>
                     </NavLink>

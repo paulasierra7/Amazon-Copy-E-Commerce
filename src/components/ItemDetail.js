@@ -25,17 +25,17 @@ return (
                 src={item.image}
                 top
                 style={{
-                    width: '18rem'
+                    width: '50%'
                     }}
                 />
                 <CardBody>
-                <h3>Este es el detalle del producto</h3>   
-                <CardTitle tag="h5">
-                    {item.product}
+                <h3>{item.product}</h3>   
+                <CardTitle tag="h4">
+                    Color: {item.color}
                 </CardTitle>
                 <CardSubtitle
                     className="mb-2 text-muted"
-                    tag="h6"
+                    tag="h4"
                 >
                     $ {item.price} USD
                 </CardSubtitle>
@@ -43,13 +43,13 @@ return (
                     Hay {item.stock} en stock
                 </CardText>
                 <CardText>
-                    <h6>Esta es la información del producto: 🥳 </h6>
+                    <h6>Información del producto: 🥳 </h6>
                     {item.description}
                 </CardText>
                 {
                     isAdded ?
                     <NavLink to="/cart">
-                        <Button>Ir al carrito</Button>
+                        <Button type="button" className="btn btn-danger" size="lg">Ir al carrito</Button>
                     </NavLink>
                     :
                     <ItemCount initial={initial} stock={stock} onAdd={onAdd} itemprice={item.price} />

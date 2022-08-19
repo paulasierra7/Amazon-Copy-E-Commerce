@@ -21,12 +21,11 @@ const BarraNav = ({ type,count }) => {
 
                 <Container className="justify-content-end">
 
-                    <Link to ="/category/camisas">Camisas</Link>
-                    <Link to ="/category/relojes">Relojes</Link>
-                    <Link to ="/category/bufandas">Bufandas</Link>
-                    <Link to ="/category/tenis">Zapatos</Link>
-                    <Link to ="/category/bolsos">Bolsos</Link>
-                    <Link to ="/cart">p{count}</Link>
+                    <Link to ="/category/tenis">Sneakers</Link>
+                    <Link to ="/category/electronics">Electronics</Link>
+                    <Link to ="/category/apparel">Apparel</Link>
+                    <Link to ="/category/sandals">Sandals</Link>
+                    <Link to ="/cart">Carrito{count}</Link>
                     <CartWidget/>
 
                     <Link to ="/perfil/">Perfil</Link>

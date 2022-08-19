@@ -86,7 +86,7 @@ nav a {
 }
 
 main {
-    padding: 1rem;
+    padding: 0px 30px 30px 30px;
     flex-grow: 1;
     text-align: left;
 }

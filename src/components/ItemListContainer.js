@@ -7,6 +7,7 @@ import { Spinner } from 'reactstrap';
 import { customFetch } from './customFetch';
 import Page from "./Page"
 import ItemCount from './ItemCount';
+import Banners from "./Banners"
 
 
 const ItemListContainer = () => {
@@ -31,9 +32,10 @@ const ItemListContainer = () => {
 
         return(
             <>
+            <Banners/>
                 {!loading && <Spinner />
                 ?
-            <Page titulo="Catalogo"  subtitulo="Todos los productos en un solo lugar">
+            <Page titulo="Catalogo"  subtitulo="Todos los productos en un solo lugar" category="category">
             <ItemList productos={productos} />
             </Page>
             :
