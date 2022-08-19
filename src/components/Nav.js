@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { Navbar, Container } from "react-bootstrap"
 import CartWidget from "./CartWidget"
 
-const BarraNav = ({ type }) => {
+const BarraNav = ({ type,count }) => {
 
     if(type === "header"){
         return (
@@ -26,6 +26,7 @@ const BarraNav = ({ type }) => {
                     <Link to ="/category/bufandas">Bufandas</Link>
                     <Link to ="/category/tenis">Zapatos</Link>
                     <Link to ="/category/bolsos">Bolsos</Link>
+                    <Link to ="/cart">p{count}</Link>
                     <CartWidget/>
 
                     <Link to ="/perfil/">Perfil</Link>

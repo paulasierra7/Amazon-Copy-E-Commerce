@@ -1,86 +1,58 @@
-import App from '../App';
-import { useState, useEffect } from "react" 
+import { useState} from "react" 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, ButtonGroup, Card, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import { Button, ButtonGroup, NavLink } from 'reactstrap';
 
 import '../estilos.css';
+import Slider from "./Slider";
 
-
-const ItemCount = ({onAdd, initial, stock}) => {
-    const [titulo, setTitulo] = useState("Cargando...")
-    const [contador,setContador] = useState(0)
-    const [confirmed, setConfirmed] = useState(false)
-
-    useEffect(()=> {
-        setTitulo("cargando")
-
-        const simulacroPedido = new Promise ((res,rej)=>{
-            setTimeout(()=>{
-                res("Producto cargado - todo bien")
-            },2000)
-        })
-        
-        simulacroPedido.then((resultado)=>{
-            setTitulo("Producto cargado bien")
-            console.log({resultado})
-        })
-        simulacroPedido.catch((error)=>{})
-
-    },[confirmed])
-
+const ItemCount = ({onAdd}) => {
+    const [estadoHijo, setEstadoHijo] = useState(0)
+    const [estadoPadre, setEstadoPadre] = useState(0)
 
     const sumar = () => {
-        setContador(contador + 1)
-    }
-    const restar = () => {
-        setContador(contador - 1)
-        if (contador <= 0) {
-            setContador(0)
-        }
-    }
-    const resetear = () => {
-        setContador(contador*0)
-    }
-    const confirmar = () => {
-        setConfirmed(!confirmed)
+        setEstadoHijo(estadoHijo + 1)
+        setEstadoPadre(estadoHijo + 1)
     }
 
+    const restar = () => {
+        setEstadoHijo(estadoHijo - 1)
+        setEstadoPadre(estadoHijo - 1)
+    }
+
+    const handleChange = (e) => {
+        setEstadoPadre(e.target.value)
+    }
 
     return (
-        <>
-        <Card
-                color="dark"
-                inverse
-                style={{
-                    width: '18rem'
-                }}
-            >
-            <CardBody>
-                <CardTitle tag="h5">
-                {titulo}
-                </CardTitle>
-                <CardSubtitle
-                className="mb-2 text-muted"
-                tag="h6"
-                >
-                    Has añadido {contador} prendas al carrito de compras 🛒
-                </CardSubtitle>
-                    <ButtonGroup>
-                        <Button onClick={restar}>
-                            - 
-                        </Button>
-                        <Button onClick={resetear}>
-                            reset 
-                        </Button>
-                        <Button onClick={sumar}>
-                            + 
-                        </Button>
-                    </ButtonGroup>
-                    <Button onClick={confirmar}>confirmar</Button>
-            </CardBody>
-        </Card>
-        </>
+        <div>
+            <input onChange={handleChange} type="range" step={1} />
+            <br />
+            <ButtonGroup>
+                <Button color="danger" outline onClick={restar}>-</Button>
+                <h5 className='text-danger'>{estadoPadre}</h5>
+                <Button color="danger" outline onClick={sumar}>+</Button>
+                </ButtonGroup>
+                <div>
+                    <NavLink to="/cart/">
+                        <Button color="danger" onClick={onAdd}>Agregar al carrito</Button>
+                    </NavLink>
+                </div>
+        </div>
     )
 }
 
 export default ItemCount
+
+
+
+
+
+
+
+
+    // const finalPrice = () => {
+    //     console.log(itemprice)
+    //     setItemprice(estadoPadre * itemprice)
+    // }
+
+                        {/* <h3>$({finalPrice})</h3> */}

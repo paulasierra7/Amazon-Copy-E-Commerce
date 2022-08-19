@@ -6,6 +6,7 @@ import { products } from '../productos';
 import { Spinner } from 'reactstrap';
 import { customFetch } from './customFetch';
 import Page from "./Page"
+import ItemCount from './ItemCount';
 
 
 const ItemListContainer = () => {

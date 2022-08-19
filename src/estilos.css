@@ -135,3 +135,32 @@ ul {list-style: none;}
     max-width: 300px;
     height: auto;
 }
+
+.cartIcon {
+    padding: 0;
+    display: flex;
+}
+
+.text-light {
+    padding: 10px 0px 10px 10px;
+}
+
+
+.last_buttons{
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px
+}
+.qty_btn{display:flex;
+    justify-content:center;
+    align-items:center;
+    height:40px;
+    width:100px;
+    border-radius:25px;
+    background-color:#eff0f2;
+    font-size:15px;
+    cursor:pointer;
+    transition:all 0.5s
+}
+
+.qty_btn:hover{background-color:#9d9fa3}.qty_btn p{padding:0 15px;font-weight:700}.money_bag{display:flex;justify-content:center;align-items:center}.money_bag h3{margin-right:5px}.money_bag button{height:40px;width:100px;background-color:#51beff;border:none;border-radius:25px;font-size:12px;color:#fff;cursor:pointer;transition:all 0.5s}.money_bag button:hover{background-color:#107bbb}.money_bag button i{margin-right:5px}
