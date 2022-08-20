@@ -388,7 +388,7 @@ const handleClick = () => {
     2) componente padre le pasa el callback a los componentes hijos
     3) componente hijos llaman al callback en el evento
 
-    1) en app: 
+    1) en APP: 
     <BrowserRouter>
             <CustomProvider>
                     <Header />
@@ -398,22 +398,139 @@ const handleClick = () => {
         </BrowserRouter>       
 
 
-    2) creas un componente unico: 
+    2) creas una funcion con los valores dentro de un rafce componente: 
 
-const CustomProvider = (props) => {
-    const valorDelContexto = {
-        cantidad: cantidad,
-        carrito : carrito,
-        agregarProducto,
-        eliminarProducto,
-    }
+    export const contexto = createContext(); //Aca va a "vivir" la data "global"
+    const { Provider } = contexto; //Es un componente que nos sirve para hacer "global" el valor del contexto desde su aparicion 
 
+    const CustomProvider = () => {
+
+        const valorDelContexto = {
+                cantidad: cantidad,
+                carrito : carrito,
+                agregarProducto,
+                eliminarProducto,
+        }
+
+        return(
+                <Provider value={valorDelContexto}>
+                    {props.children}
+                </Provider>
+            )
+        }
+        export default CustomProvider;
+
+
+    3) + pasas el valor como prop y tiene que ser children OJO. 
     return(
         <Provider value={valorDelContexto}>
             {props.children}
         </Provider>
     )
+}
+    en el componente donde quieres exportar: 
+    4) import { useContext } from "react"; // en el componente donde quieres usar el contexto
+    5) import { contexto } from './CustomProvider';
+    6) Declaras useContext funcion como const: 
 
-    3)     useContext() // en el componente donde quieres usar el contexto
+    const { agregarProducto } = useContext(contexto)
+
+    7) metes el "agregarProducto" dentro de una funcion ya establecida en el componente y listo. 
+
+    const onAdd = (contador) => {
+        // console.log("producto a comprar :")
+        // console.log(item)
+        // console.log("Cantidad a comprar: ")
+        console.log(parseInt(contador))
+        setIsAdded(true)
+        item.cantidad = contador
+        agregarProducto(item)
+    }
+
+
+
+    //*CLASE : Tecnicas de rendering
+
+    //* Forma de escribirlo con menos lineas: useHook()
+    
+    Ahora cambias en vez de escribir en el componente padre: 
+
+        export const contexto = createContext(); //Aca va a "vivir" la data "global"
+        const { Provider } = contexto; //Es un componente que nos sirve para hacer "global" el valor del contexto desde su aparicion 
+
+
+    Escribes en el componente padre: 
+
+        const contexto = createContext(); //Aca va a "vivir" la data "global"
+        const { Provider } = contexto; //Es un componente que nos sirve para hacer "global" el valor del contexto desde su aparicion 
+
+        export const useCarrito = () => {
+            return useContext(contexto)
+        }
+
+    y en el componente hijo, donde exportas, a no escribes:
+
+        import { useContext } from "react"; // en el componente donde quieres usar el contexto
+        import { contexto } from './CustomProvider';
+
+    y 
+        const { agregarProducto } = useContext(contexto)
+
+
+    sino que escribes 👇
+
+        import { useCarrito } from './CustomProvider';
+
+    y 
+            const { agregarProducto } = useCarrito()
+
+
+
+    //* COMO REDUCIR TU CODIGO CON LOS TERNARIOS: 
+
+    TU CODIGO INICIAL: 
+                const BarraNav = ({ type,count }) => {
+
+                if(type === "header"){
+                    return (
+                        <nav>
+                        <Navbar fixed="top" bg="dark" variant="dark" >
+                            <Link to="/">
+                                <img
+                                    alt="logo"
+                                    src="./amazon.png"
+                                    style={{
+                                    height: 40,
+                                    width: 140
+                                    }}
+                                />     
+                            </Link>
+
+                            <Container className="justify-content-end">
+                                <Link className="sneakersNav" to ="/category/tenis">Sneakers</Link>
+                                <Link className="electronicsNav" to ="/category/electronics">Electronics</Link>
+                                <Link className="apparelNav" to ="/category/apparel">Apparel</Link>
+                                <Link className="sandalsNav" to ="/category/sandals">Sandals</Link>
+                                <CartWidget/>
+                                <Link className="perfilNav" to ="/perfil/">Perfil</Link>
+                            </Container>
+                        </Navbar> 
+                        </nav>
+                    )
+                } else {
+                    return (
+                        <nav>
+                        <Navbar  fixed="bottom" bg="dark" variant="dark"  className="BarraNav">
+                            <Container className="justify-content-end">
+                                <Link className="perfilNav" to ="/perfil/">Perfil</Link>
+                            </Container>
+                        </Navbar>
+                        </nav>
+                    )
+                }
+            }
+
+            export default BarraNav
+
 
     */

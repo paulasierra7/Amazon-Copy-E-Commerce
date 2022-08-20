@@ -1,15 +1,14 @@
 import { useState} from "react" 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, ButtonGroup, CardText, NavLink } from 'reactstrap';
+import { Button, ButtonGroup, NavLink } from 'reactstrap';
 import { Card } from "react-bootstrap";
 
 
 import '../estilos.css';
-import Slider from "./Slider";
 
 const ItemCount = ({ estadoPadre , onAdd , stock, initial }) => {
     const [contador, setContador] = useState(0)
-    const [confirmed, setConfirmed] = useState(0)
+    // const [confirmed, setConfirmed] = useState(0)
 
     const sumar = () => {
         setContador(contador + 1)
@@ -61,11 +60,3 @@ export default ItemCount
 
 
 
-
-
-    // const finalPrice = () => {
-    //     console.log(itemprice)
-    //     setItemprice(estadoPadre * itemprice)
-    // }
-
-                        {/* <h3>$({finalPrice})</h3> */}

@@ -2,19 +2,17 @@ import { Row, Col, CardGroup, Card, CardImg, CardTitle, CardSubtitle, CardText, 
 import { NavLink } from "react-router-dom"
 import { useState } from 'react';
 import ItemCount from './ItemCount';
-import { useContext } from "react";
-import { contexto } from './CustomProvider';
-import Contador from './Contador';
+import { useCarrito } from './CustomProvider';
 
 const ItemDetail = ({ item }) => { 
     const [isAdded, setIsAdded] = useState(false)
     const {stock, initial} = item
-    const { agregarProducto } = useContext(contexto)
+    const { agregarProducto } = useCarrito()
 
     const onAdd = (contador) => {
-        console.log("producto a comprar :")
-        console.log(item)
-        console.log("Cantidad a comprar: ")
+        // console.log("producto a comprar :")
+        // console.log(item)
+        // console.log("Cantidad a comprar: ")
         console.log(parseInt(contador))
         setIsAdded(true)
         item.cantidad = contador

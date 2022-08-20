@@ -1,10 +1,13 @@
-import { createContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, createContext, useState } from "react";
 
 
-export const contexto = createContext(); //Aca va a "vivir" la data "global"
-const { Provider } = contexto; //Es un componente que nos sirve para hacer "global" el valor del contexto desde su aparicion 
+const contexto = createContext(); 
+const { Provider } = contexto; 
 
+export const useCarrito = () => {
+    const valor_del_contexto = useContext(contexto)
+    return valor_del_contexto
+}
 
 const CustomProvider = (props) => {
 
@@ -32,7 +35,7 @@ const CustomProvider = (props) => {
     }
     
     const valorDelContexto = {
-        cantidad: cantidad,
+        cantidad: parseInt(cantidad),
         carrito : carrito,
         agregarProducto,
         eliminarProducto,

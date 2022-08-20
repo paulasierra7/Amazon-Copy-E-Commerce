@@ -2,6 +2,8 @@ import { Link } from "react-router-dom"
 import { Navbar, Container } from "react-bootstrap"
 import CartWidget from "./CartWidget"
 
+
+
 const BarraNav = ({ type,count }) => {
 
     if(type === "header"){
@@ -29,7 +31,7 @@ const BarraNav = ({ type,count }) => {
                     <Link className="perfilNav" to ="/perfil/">Perfil</Link>
                     {/* </div> */}
                 </Container>
-            </Navbar>
+            </Navbar> 
             </nav>
         )
     } else {
