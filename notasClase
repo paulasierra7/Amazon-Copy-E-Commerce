@@ -378,6 +378,42 @@ const handleClick = () => {
     
     
     
+    //* createContext():
+    conserva la info de estado global de cada componente.
     
-    
+    1) const contexto = createContext(); //Aca va a "vivir" la data global.
+    2) const { Provider }  = contexto; //Es un componente que nos sirve para hacer "global" el valor del contexto desde su aparicion
+
+    1) componente padre tiene un callback (itemDetail)
+    2) componente padre le pasa el callback a los componentes hijos
+    3) componente hijos llaman al callback en el evento
+
+    1) en app: 
+    <BrowserRouter>
+            <CustomProvider>
+                    <Header />
+                    <Main />
+                    <Footer /> 
+            </CustomProvider>  
+        </BrowserRouter>       
+
+
+    2) creas un componente unico: 
+
+const CustomProvider = (props) => {
+    const valorDelContexto = {
+        cantidad: cantidad,
+        carrito : carrito,
+        agregarProducto,
+        eliminarProducto,
+    }
+
+    return(
+        <Provider value={valorDelContexto}>
+            {props.children}
+        </Provider>
+    )
+
+    3)     useContext() // en el componente donde quieres usar el contexto
+
     */

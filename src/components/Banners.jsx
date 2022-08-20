@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 const Banners = () => {
     return (
-        <Carousel>
+        <Carousel >
         <Carousel.Item>
         <Link to ="/category/tenis">
             <img
-            className="d-block w-100"
+            className="d-block w-100" 
             src="https://images.contentstack.io/v3/assets/blt818b0c67cf450811/blt6260bec08f03a096/62f2902556900276097558a8/ES-MX_NB_Banners_Primary_Desktop.jpg?quality=90&auto=webp&format=pjpg&height=450"
             alt="First slide"
             />
