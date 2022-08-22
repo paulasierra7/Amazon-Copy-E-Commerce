@@ -22,14 +22,12 @@ const BarraNav = ({ type,count }) => {
                 </Link>
 
                 <Container className="justify-content-end">
-                    {/* <div className="BarraNav"> */}
                     <Link className="sneakersNav" to ="/category/tenis">Sneakers</Link>
                     <Link className="electronicsNav" to ="/category/electronics">Electronics</Link>
                     <Link className="apparelNav" to ="/category/apparel">Apparel</Link>
                     <Link className="sandalsNav" to ="/category/sandals">Sandals</Link>
                     <CartWidget/>
                     <Link className="perfilNav" to ="/perfil/">Perfil</Link>
-                    {/* </div> */}
                 </Container>
             </Navbar> 
             </nav>

@@ -533,4 +533,43 @@ const handleClick = () => {
             export default BarraNav
 
 
+
+
+    //* CONTROLLED COMPONENTS - Todas las cosas que reciben input, cada control almacena info en un useState, 
+    //* por cada cambio se guardo en un valor aparte y se puede usar en varios sin problemas.
+
+
+    PARA VER CUANDO SE HACE RENDER: PROFILE extension
+
+    //* CUANDO SE HACE RENDER?
+
+    1 - CAMBIA EL ESTADO
+    2 - CAMIA EL CONTEXTO
+    3 - CUANDO SE ACTUALIZAN LOS PADRES
+    4 - CUANDO CAMBIA UN PROPS
+
+
+    SOLUCION
+    useMemo (hook) : memoriza un variable interna de un componente (que no sea un fn)
+    useCallback (hook): memoriza un fn interna de un componente
+
+    memo (HigherOrderComponent): memoriza un componente entero, no solo una cosa. TU COMPONENTE TE VAS A RENDERIZAR SI TUS PROPS CAMBIA, ESTADO CAMBIO, MENOS SI TU PADRE CAMBIA
+
+    ejemplo:
+            import { memo } from "react"
+
+            const List = ({ usuarios }) => {
+                return (
+                    <section>
+                        <h2>Lista de usuarios</h2>
+                        {usuarios.map(usuario => (
+                            <article key={usuario.nombre}>
+                                <h3>{usuario.nombre}{usuario.apellido}</h3>
+                            </article>
+                        ))}
+                    </section>
+                )
+            }
+
+            export default memo(List)
     */
