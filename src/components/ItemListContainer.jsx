@@ -2,33 +2,54 @@ import '../estilos.css';
 import ItemList from './ItemList';
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
-import { products } from '../productos';
+// import { products } from '../productos';
 import { Spinner } from 'reactstrap';
 import { customFetch } from './customFetch';
 import Page from "./Page"
 import ItemCount from './ItemCount';
 import Banners from "./Banners"
+import { db } from "../firebase"
+import { collection, getDocs, query, where  } from "firebase/firestore"
 
 
 const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
-    const { category } = useParams()
+    const { id } = useParams()
 
     useEffect(() => {
-        setLoading(true)
-        customFetch(products)
-            .then(res => {
-                if (category) {
-                    setLoading(false)
-                    setProductos(res.filter(prod => prod.category === category))
-                } else {
-                    setLoading(false)
-                    setProductos(res)
+        const productosCollection = collection(db, "products")
+        const filtro = query(productosCollection, where("category","==", id))
+        const consulta = getDocs(productosCollection)
+
+        consulta
+        .then(snapshot=>{
+            const productos = snapshot.docs.map(doc=>{
+                return {
+                    ...doc.data(),
+                    id: doc.id
                 }
             })
-        }, [category])
+            setProductos(products)
+            setLoading(false)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }, [id])
+        // setLoading(true)
+        // customFetch(products)
+        //     .then(res => {
+        //         if (category) {
+        //             setLoading(false)
+        //             setProductos(res.filter(prod => prod.category === category))
+        //         } else {
+        //             setLoading(false)
+        //             setProductos(res)
+        //         }
+        //     })
+        // }, [category])
 
         return(
             <>

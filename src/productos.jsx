@@ -238,5 +238,14 @@ export const products = [
 			"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
 			"price": 249,
 			"stock": 20,
+		},
+		{
+			"id": 25,
+			"image": "https://images.stockx.com/images/adidas-Yeezy-Slide-Flax.jpg?fit=fill&bg=FFFFFF&w=480&h=320&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1660200179&q=75",
+			"category": "Flax",
+			"product": "adidas Yeezy Slide",
+			"description": "Lorem Ipsum is simply dummy text...",
+			"price": 249,
+			"stock": 10,
 		}
 ]

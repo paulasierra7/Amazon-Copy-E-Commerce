@@ -572,4 +572,12 @@ const handleClick = () => {
             }
 
             export default memo(List)
+
+
+
+    
+//* CLASE FIREBASE
+
+1. Me traigo la referencia de la DB. 
+2. 
     */
