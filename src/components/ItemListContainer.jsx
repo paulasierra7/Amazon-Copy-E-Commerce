@@ -2,7 +2,7 @@ import '../estilos.css';
 import ItemList from './ItemList';
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
-// import { products } from '../productos';
+import { products } from '../productos';
 import { Spinner } from 'reactstrap';
 import { customFetch } from './customFetch';
 import Page from "./Page"
@@ -16,40 +16,41 @@ const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
-    const { id } = useParams()
+    const { id, category } = useParams()
 
     useEffect(() => {
-        const productosCollection = collection(db, "products")
-        const filtro = query(productosCollection, where("category","==", id))
-        const consulta = getDocs(productosCollection)
+        // const productosCollection = collection(db, "products")
+        // const filtro = query(productosCollection, where("category","==", id))
+        // const consulta = getDocs(productosCollection)
 
-        consulta
-        .then(snapshot=>{
-            const productos = snapshot.docs.map(doc=>{
-                return {
-                    ...doc.data(),
-                    id: doc.id
+    //     consulta
+    //     .then(snapshot=>{
+    //         const productos = snapshot.docs.map(doc=>{
+    //             return {
+    //                 ...doc.data(),
+    //                 id: doc.id
+    //             }
+    //         })
+    //         setProductos(products)
+    //         setLoading(false)
+    //     })
+    //     .catch(err=>{
+    //         console.log(err)
+    //     })
+    // }, [id])
+
+        setLoading(true)
+        customFetch(products)
+            .then(res => {
+                if (category) {
+                    setLoading(false)
+                    setProductos(res.filter(prod => prod.category === category))
+                } else {
+                    setLoading(false)
+                    setProductos(res)
                 }
             })
-            setProductos(products)
-            setLoading(false)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-    }, [id])
-        // setLoading(true)
-        // customFetch(products)
-        //     .then(res => {
-        //         if (category) {
-        //             setLoading(false)
-        //             setProductos(res.filter(prod => prod.category === category))
-        //         } else {
-        //             setLoading(false)
-        //             setProductos(res)
-        //         }
-        //     })
-        // }, [category])
+        }, [category])
 
         return(
             <>

@@ -1,13 +1,15 @@
 import { useState } from "react"
 import Page from "./Page"
 import List from "./List";
+import React, { useContext } from 'react';
+import { CartContext, useCarrito } from './CustomProvider'
 
 const Cart = () => {
 
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
     const [usuarios, setUsuarios] = useState([]);
-
+    const { cart } = useContext(useCarrito);
 
     const handleChangeNombre = (e) => {
         const input = e.target
@@ -28,6 +30,29 @@ const Cart = () => {
         setUsuarios(usuarios_copia)
     }
     
+
+
+    if (cart.length > 0) {
+        return(
+            <div>
+                {
+                    cart.map((element, index) => {
+                        return <div key={index}>
+                            <div>
+                                <img src={element.pictureURL} alt ={element.name}></img>
+                            </div>
+                            <div>
+                                <h3>{element.name}</h3>
+                                <h2>Precio: $ {element.price}</h2>
+                                <h3>Unidades: </h3>
+
+                            </div>
+                        </div>
+                    })
+                }
+            </div>
+        )
+    }
 
     return (
         <Page titulo ="Carrito" subtitulo="Compra y vende">

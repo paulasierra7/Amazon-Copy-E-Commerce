@@ -15,28 +15,49 @@ const CustomProvider = (props) => {
     const [carrito, setCarrito] = useState([]);
     const [precioTotal, setPrecioTotal] = useState(0);
 
-    const agregarProducto = (producto) => {
-        console.log(producto)
-        setCantidad(cantidad + producto.cantidad)
-        setPrecioTotal(precioTotal + producto.price)
-        console.log(precioTotal)
-        carrito.push(producto.id)
+    const isInCart = (producto) => {
+        return carrito.some(x => x.id === id)
+    }
+
+    const addItem = (producto, stock) => {
+
+        const newItem = {
+            ...producto,
+            qty
+        }
+
+        if (isInCart(newItem.id)){
+            const findProduct = carrito.find(x => x.id === newItem.id)
+            const productIndex = carrito.indexOf(findProduct)
+            const auxArray = [...carrito]
+            auxArray[productIndex].qty += qty
+            setCart([...carrito,newItem])
+
+        }else{
+            setCarrito([...carrito, newItem])
+        }
     }
     
-    const eliminarProducto = (producto) => {
+    const emptyCart = () => {
         const vaciarCarrito = () => {
-            setCantidad(cantidad - producto.id)
-            setCarrito([])  
+            return setCarrito([])  
         }
     }
 
-    const vaciarCarrito = () => {
-        setCarrito([])
+    const deleteItem = (id) => {
+        return setCart(carrito.filter(x => x.id !== id))
     }
 
-    const estaEnCarrito = (producto) => {
-        const siestaencarrito = carrito.find(producto => producto > producto.id);
+    const getItemQty = () => {
+        return carrito.reduce((acc, x) => acc += x.qty, 0)
     }
+
+    const getItemPrice = () => {
+        return carrito.reduce((acc, x) => acc += x.qty * x.price, 0)
+    }
+
+
+    
     
     const valorDelContexto = {
         cantidad: parseInt(cantidad),
