@@ -2,35 +2,11 @@ import { useState } from "react"
 import Page from "./Page"
 import List from "./List";
 import React, { useContext } from 'react';
-import { CartContext, useCarrito } from './CustomProvider'
+import { contexto, useCarrito } from './CustomProvider'
 
 const Cart = () => {
 
-    const [nombre, setNombre] = useState("");
-    const [apellido, setApellido] = useState("");
-    const [usuarios, setUsuarios] = useState([]);
     const { cart } = useContext(useCarrito);
-
-    const handleChangeNombre = (e) => {
-        const input = e.target
-        const value = input.value
-        setNombre(value)
-    }
-
-    const handleChangeApellido = (e) => {
-        const input = e.target
-        const value = input.value
-        setApellido(value)
-    }
-
-    const handleConfirm = () => {
-        const usuario = {nombre, apellido}
-        const usuarios_copia = [...usuarios]
-        usuarios_copia.push(usuario)
-        setUsuarios(usuarios_copia)
-    }
-    
-
 
     if (cart.length > 0) {
         return(
@@ -45,7 +21,9 @@ const Cart = () => {
                                 <h3>{element.name}</h3>
                                 <h2>Precio: $ {element.price}</h2>
                                 <h3>Unidades: </h3>
-
+                            </div>
+                            <div className="btn btn-danger">
+                                Delete
                             </div>
                         </div>
                     })
@@ -57,12 +35,14 @@ const Cart = () => {
     return (
         <Page titulo ="Carrito" subtitulo="Compra y vende">
 
-            <input type="text" placeholder="Nombre" onChange={handleChangeNombre} value={nombre}/>
-            <input type="text" placeholder="Apellido" onChange={handleChangeApellido} value={apellido}/>
+            {/* <input type="text" placeholder="Nombre" onChange={handleChangeNombre} value={nombre}/>
+            <input type="text" placeholder="Apellido" onChange={handleChangeApellido} value={apellido}/> */}
 
-            <button onClick={handleConfirm}>guardar</button>
+            {/* <button onClick={handleConfirm}>guardar</button> */}
+            <button >guardar</button>
 
-            <List usuarios={usuarios}/>
+            {/* <List usuarios={usuarios}/> */}
+            <List/>
 
         </Page>
     )

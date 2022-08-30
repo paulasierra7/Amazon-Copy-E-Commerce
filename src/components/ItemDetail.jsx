@@ -10,10 +10,7 @@ const ItemDetail = ({ item }) => {
     const { agregarProducto } = useCarrito()
 
     const onAdd = (contador) => {
-        // console.log("producto a comprar :")
-        // console.log(item)
-        // console.log("Cantidad a comprar: ")
-        console.log(parseInt(contador))
+        parseInt(contador)
         setIsAdded(true)
         item.cantidad = contador
         agregarProducto(item)
@@ -25,11 +22,7 @@ return (
     <CardGroup>
         <Row>
             <Col >
-            <Card
-                // style={{
-                // width: '18rem'
-                // }}
-            >
+            <Card>
                 <CardImg
                 src={item.image}
                 top
@@ -63,7 +56,6 @@ return (
                     :
                     <ItemCount initial={initial} stock={stock} onAdd={onAdd} itemprice={item.price} />
                 }
-                {/* <Link to={`/cart/${item.id}`}><Button>COMPRAR 🥰 </Button></Link> */}
                 </CardBody>
             </Card>
             </Col>

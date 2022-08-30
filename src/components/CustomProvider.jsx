@@ -1,7 +1,6 @@
 import { useContext, createContext, useState } from "react";
 
-
-const contexto = createContext(); 
+export const contexto = createContext(); 
 const { Provider } = contexto; 
 
 export const useCarrito = () => {
@@ -15,23 +14,26 @@ const CustomProvider = (props) => {
     const [carrito, setCarrito] = useState([]);
     const [precioTotal, setPrecioTotal] = useState(0);
 
-    const isInCart = (producto) => {
+    const isInCart = (id) => {
         return carrito.some(x => x.id === id)
+        console.log("Esta en carrito")
     }
 
-    const addItem = (producto, stock) => {
+    const addItem = (id, cantidad) => {
 
         const newItem = {
-            ...producto,
-            qty
+            ...id,
+            cantidad
         }
 
         if (isInCart(newItem.id)){
             const findProduct = carrito.find(x => x.id === newItem.id)
             const productIndex = carrito.indexOf(findProduct)
             const auxArray = [...carrito]
-            auxArray[productIndex].qty += qty
-            setCart([...carrito,newItem])
+            auxArray[productIndex].cantidad += cantidad
+            setCarrito([...carrito,newItem])
+            console.log("Esta en carrito addItem")
+
 
         }else{
             setCarrito([...carrito, newItem])
@@ -45,15 +47,16 @@ const CustomProvider = (props) => {
     }
 
     const deleteItem = (id) => {
-        return setCart(carrito.filter(x => x.id !== id))
+        return setCarrito(carrito.filter(x => x.id !== id))
+        
     }
 
     const getItemQty = () => {
-        return carrito.reduce((acc, x) => acc += x.qty, 0)
+        return carrito.reduce((acc, x) => acc += x.cantidad, 0)
     }
 
     const getItemPrice = () => {
-        return carrito.reduce((acc, x) => acc += x.qty * x.price, 0)
+        return carrito.reduce((acc, x) => acc += x.cantidad * x.price, 0)
     }
 
 
@@ -62,8 +65,8 @@ const CustomProvider = (props) => {
     const valorDelContexto = {
         cantidad: parseInt(cantidad),
         carrito : carrito,
-        agregarProducto,
-        eliminarProducto,
+        addItem,
+        deleteItem,
     }
 
     return(
