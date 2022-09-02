@@ -11,6 +11,8 @@ const firebaseConfig = {
 };
 
 
+//Esta variable representa "la plataforma firebase"
 const app = initializeApp(firebaseConfig);
 
+//Esta variable representa "la base de datos"
 export const db = getFirestore(app);

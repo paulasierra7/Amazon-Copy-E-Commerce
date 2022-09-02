@@ -14,7 +14,6 @@ const Page = (props) => {
                 <h3>{props.subtitulo}</h3> 
             </header>*/}
             <div className="page__content">
-                <h4>Marcas populares</h4>
                 {props.children}
             </div>
         </div>

@@ -9,17 +9,31 @@ const ItemDetailContainer = () => {
 
     const [item, setItem] = useState({})
     const [loading, setLoading] = useState(true)
+    const { id } = useParams();
 
-    const { id } = useParams()
 
     useEffect(() => {
-        setLoading(true)
-        customFetch(products)
-            .then(res => {
-                setLoading(false)
-                setItem(res.find(item => item.id === parseInt(id)))
-            })
-    }, [])
+
+        // const pedido = fetch("https://fakestoreapi.com/products/" + id)
+        
+        // pedido
+        //     .then((respuesta) => {
+        //         return respuesta.json()
+        //     })
+        //     .then((respuesta) => {
+        //         setItem(respuesta)
+        //     })
+        }, [id])
+
+
+    // useEffect(() => {
+    //     setLoading(true)
+    //     customFetch(products)
+    //         .then(res => {
+    //             setLoading(false)
+    //             setItem(res.find(item => item.id === parseInt(id)))
+    //         })
+    // }, [])
 
     return(
         <>

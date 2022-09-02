@@ -8,7 +8,7 @@ import { customFetch } from './customFetch';
 import Page from "./Page"
 import ItemCount from './ItemCount';
 import Banners from "./Banners"
-import { db } from "../firebase"
+import { db } from "../firebase" // a) me traigo la referencia de la DB
 import { collection, getDocs, query, where  } from "firebase/firestore"
 
 
@@ -16,12 +16,36 @@ const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
-    const { id, category } = useParams()
+    const { id } = useParams()
 
     useEffect(() => {
-        // const productosCollection = collection(db, "products")
+        const productosCollection = collection(db, "products")
         // const filtro = query(productosCollection, where("category","==", id))
-        // const consulta = getDocs(productosCollection)
+        // console.log(filtro)
+        const consulta = getDocs(productosCollection)
+
+        consulta
+        .then(snapshot=>{
+            //console.log(snapshot.docs)
+            const productos = snapshot.docs.map(doc=>{
+                /* const producto_final_con_id = {
+                    ...doc.data()
+                }
+                producto_final_con_id.id = doc.id
+                return producto_final_con_id */
+                return {
+                    ...doc.data(),
+                    id: doc.id
+                }
+            })
+            setProductos(productos)
+            setLoading(false)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }, [])
+
 
     //     consulta
     //     .then(snapshot=>{
@@ -39,18 +63,18 @@ const ItemListContainer = () => {
     //     })
     // }, [id])
 
-        setLoading(true)
-        customFetch(products)
-            .then(res => {
-                if (category) {
-                    setLoading(false)
-                    setProductos(res.filter(prod => prod.category === category))
-                } else {
-                    setLoading(false)
-                    setProductos(res)
-                }
-            })
-        }, [category])
+        // setLoading(true)
+        // customFetch(products)
+        //     .then(res => {
+        //         if (category) {
+        //             setLoading(false)
+        //             setProductos(res.filter(prod => prod.category === category))
+        //         } else {
+        //             setLoading(false)
+        //             setProductos(res)
+        //         }
+        //     })
+        // }, [category])
 
         return(
             <>
@@ -67,4 +91,5 @@ const ItemListContainer = () => {
         </>
     )  
 }
+
 export default ItemListContainer
