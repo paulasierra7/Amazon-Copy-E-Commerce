@@ -21,18 +21,11 @@ const ItemListContainer = () => {
     useEffect(() => {
         const productosCollection = collection(db, "products")
         // const filtro = query(productosCollection, where("category","==", id))
-        // console.log(filtro)
         const consulta = getDocs(productosCollection)
 
         consulta
         .then(snapshot=>{
-            //console.log(snapshot.docs)
             const productos = snapshot.docs.map(doc=>{
-                /* const producto_final_con_id = {
-                    ...doc.data()
-                }
-                producto_final_con_id.id = doc.id
-                return producto_final_con_id */
                 return {
                     ...doc.data(),
                     id: doc.id
