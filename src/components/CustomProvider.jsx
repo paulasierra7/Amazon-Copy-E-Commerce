@@ -1,11 +1,151 @@
+// import { createContext, useState, useContext } from "react";
+
+// const CartContext = createContext([])
+// export const useCarrito = () => useContext(CartContext)
+
+// export function CustomProvider({children}){
+//     const [ cartList, setCartList ] = useState([])
+
+//     const isInCart = (id) => cartList.find(prod => prod.id === id)
+
+//     const addToCart = (item, quantity) => {
+//         if (isInCart(item.id)){
+//             const newCart = cartList.map(prod => {
+//                 if (prod.id === item.id){
+//                     const newQuantity = prod.quantity + quantity
+//                     return {...prod, quantity:newQuantity}
+//                 } else {
+//                     return prod
+//                 }
+//             })
+//             setCartList(newCart)
+//         } else {
+//             const newProduct = {...item, quantity: quantity}
+//             setCartList([...cartList, newProduct])
+//         }
+//     }
+
+//     const removeProduct = (id) => setCartList(cartList.filter(prod => prod.id !=id))
+
+//     const cleanCart = () => setCartList([])
+
+//     const totalPrice = () => {
+//         return cartList.reduce((acc, product) => acc += (product.price * product.quantity))
+//     }
+
+//     const totalQuantity = () => {
+//         return cartList.reduce((acc, product) => acc += product.quantity,0)
+//     }
+
+//     return(
+//         <CustomProvider value={{
+//             addToCart,
+//             removeProduct,
+//             cleanCart,
+//             totalPrice,
+//             totalQuantity,
+//             cartList
+//         }}>
+//             {children}
+//         </CustomProvider>
+//     )
+// }
+
+// export default CustomProvider;
+
+
+
+// import { useContext, createContext, useState } from "react";
+
+// //Contexto para poder usar este prop en todos
+// export const contexto = createContext(); //aca vive data global
+// const { Provider } = contexto; //este hace global el valor del contexto
+
+// //Hook para usar el contexto en vez de usar props. 
+// export const useCarrito = () => {
+//     return useContext(contexto)
+// }
+
+// const CustomProvider = (props) => {
+
+//     const [cantidad, setCantidad] = useState(0);
+//     const [carrito, setCarrito] = useState([]);
+//     const [precioTotal, setPrecioTotal] = useState(0);
+
+//     const isInCart = (id) => {
+//         return carrito.some(x => x.id === id)
+//         console.log("Esta en carrito")
+//     }
+
+//     const addItem = (id, cantidad) => {
+
+//         const newItem = {
+//             ...id,
+//             cantidad
+//         }
+
+//         if (isInCart(newItem.id)){
+//             const findProduct = carrito.find(x => x.id === newItem.id)
+//             const productIndex = carrito.indexOf(findProduct)
+//             const auxArray = [...carrito]
+//             auxArray[productIndex].cantidad += cantidad
+//             setCarrito([...carrito,newItem])
+//             console.log("Esta en carrito addItem")
+
+
+//         }else{
+//             setCarrito([...carrito, newItem])
+//         }
+//     }
+    
+//     const emptyCart = () => {
+//         const vaciarCarrito = () => {
+//             return setCarrito([])  
+//         }
+//     }
+
+//     const deleteItem = (id) => {
+//         return setCarrito(carrito.filter(x => x.id !== id))
+        
+//     }
+
+//     const getItemQty = () => {
+//         return carrito.reduce((acc, x) => acc += x.cantidad, 0)
+//     }
+
+//     const getItemPrice = () => {
+//         return carrito.reduce((acc, x) => acc += x.cantidad * x.price, 0)
+//     }
+
+    
+    
+//     const valorDelContexto = {
+//         cantidad: parseInt(cantidad),
+//         carrito : carrito,
+//         addItem,
+//         deleteItem,
+//     }
+
+//     return(
+//         <Provider value={valorDelContexto}>
+//             {props.children}
+//         </Provider>
+//     )
+// }
+
+
+// export default CustomProvider;
+
+
+
+
 import { useContext, createContext, useState } from "react";
 
-export const contexto = createContext(); 
+const contexto = createContext(); 
 const { Provider } = contexto; 
 
 export const useCarrito = () => {
-    const valor_del_contexto = useContext(contexto)
-    return valor_del_contexto
+    return useContext(contexto)
 }
 
 const CustomProvider = (props) => {
@@ -14,67 +154,36 @@ const CustomProvider = (props) => {
     const [carrito, setCarrito] = useState([]);
     const [precioTotal, setPrecioTotal] = useState(0);
 
-    const isInCart = (id) => {
-        return carrito.some(x => x.id === id)
-        console.log("Esta en carrito")
+    const agregarProducto = (producto) => {
+        console.log(producto)
+        setCantidad(cantidad + producto.cantidad)
+        setPrecioTotal(producto.cantidad * producto.price)
+        carrito.push(producto.id)
     }
 
-    const addItem = (id, cantidad) => {
-
-        const newItem = {
-            ...id,
-            cantidad
-        }
-
-        if (isInCart(newItem.id)){
-            const findProduct = carrito.find(x => x.id === newItem.id)
-            const productIndex = carrito.indexOf(findProduct)
-            const auxArray = [...carrito]
-            auxArray[productIndex].cantidad += cantidad
-            setCarrito([...carrito,newItem])
-            console.log("Esta en carrito addItem")
-
-
-        }else{
-            setCarrito([...carrito, newItem])
-        }
-    }
-    
-    const emptyCart = () => {
+    const eliminarProducto = (producto) => {
         const vaciarCarrito = () => {
-            return setCarrito([])  
+            setCantidad(cantidad - producto.id)
+            setCarrito([])  
         }
     }
-
-    const deleteItem = (id) => {
-        return setCarrito(carrito.filter(x => x.id !== id))
-        
+    const vaciarCarrito = () => {
+        setCarrito([])
     }
-
-    const getItemQty = () => {
-        return carrito.reduce((acc, x) => acc += x.cantidad, 0)
+    const estaEnCarrito = (producto) => {
+        const siestaencarrito = carrito.find(producto => producto > producto.id);
     }
-
-    const getItemPrice = () => {
-        return carrito.reduce((acc, x) => acc += x.cantidad * x.price, 0)
-    }
-
-
-    
     
     const valorDelContexto = {
         cantidad: parseInt(cantidad),
         carrito : carrito,
-        addItem,
-        deleteItem,
+        agregarProducto,
+        eliminarProducto,
     }
-
     return(
         <Provider value={valorDelContexto}>
             {props.children}
         </Provider>
     )
 }
-
-
 export default CustomProvider;

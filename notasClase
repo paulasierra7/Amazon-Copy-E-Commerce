@@ -541,7 +541,7 @@ const handleClick = () => {
 
     PARA VER CUANDO SE HACE RENDER: PROFILE extension
 
-    //* CUANDO SE HACE RENDER?
+    //* CUANDO SE HACE RENDER? Para ahorra que la maquina procese tanto
 
     1 - CAMBIA EL ESTADO
     2 - CAMIA EL CONTEXTO
@@ -553,7 +553,7 @@ const handleClick = () => {
     useMemo (hook) : memoriza un variable interna de un componente (que no sea un fn)
     useCallback (hook): memoriza un fn interna de un componente
 
-    memo (HigherOrderComponent): memoriza un componente entero, no solo una cosa. TU COMPONENTE TE VAS A RENDERIZAR SI TUS PROPS CAMBIA, ESTADO CAMBIO, MENOS SI TU PADRE CAMBIA
+    memo (HigherOrderComponent): memoriza EL COMPONENTE ENTERO, no solo una cosa. TU COMPONENTE TE VAS A RENDERIZAR SI TUS PROPS CAMBIA, ESTADO CAMBIO, MENOS SI TU PADRE CAMBIA
 
     ejemplo:
             import { memo } from "react"

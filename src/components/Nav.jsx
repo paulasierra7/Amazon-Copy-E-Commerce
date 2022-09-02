@@ -3,8 +3,7 @@ import { Navbar, Container } from "react-bootstrap"
 import CartWidget from "./CartWidget"
 
 
-
-const BarraNav = ({ type,count }) => {
+const BarraNav = ({ type }) => {
 
     if(type === "header"){
         return (
@@ -22,12 +21,12 @@ const BarraNav = ({ type,count }) => {
                 </Link>
 
                 <Container className="justify-content-end">
-                    <Link className="sneakersNav" to ="/category/tenis">Sneakers</Link>
-                    <Link className="electronicsNav" to ="/category/electronics">Electronics</Link>
-                    <Link className="apparelNav" to ="/category/apparel">Apparel</Link>
-                    <Link className="sandalsNav" to ="/category/sandals">Sandals</Link>
+                    <Link className="tabNav" to ="/category/tenis">Sneakers</Link>
+                    <Link className="tabNav" to ="/category/electronics">Electronics</Link>
+                    <Link className="tabNav" to ="/category/apparel">Apparel</Link>
+                    <Link className="tabNav" to ="/category/sandals">Sandals</Link>
                     <CartWidget/>
-                    <Link className="perfilNav" to ="/perfil/">Perfil</Link>
+                    <Link className="tabNav" to ="/perfil/">Perfil</Link>
                 </Container>
             </Navbar> 
             </nav>
@@ -37,7 +36,7 @@ const BarraNav = ({ type,count }) => {
             <nav>
             <Navbar  fixed="bottom" bg="dark" variant="dark"  className="BarraNav">
                 <Container className="justify-content-end">
-                    <Link className="perfilNav" to ="/perfil/">Perfil</Link>
+                    <Link className="tabNav" to ="/perfil/">Perfil</Link>
                 </Container>
             </Navbar>
             </nav>
@@ -46,3 +45,4 @@ const BarraNav = ({ type,count }) => {
 }
 
 export default BarraNav
+
