@@ -1,12 +1,11 @@
 import React from 'react'; 
-//es como crear: let react = import ./carperta llamada de algun lugar en toda mi carpeta que se llame react. 
 
 import ReactDOM from 'react-dom/client';
-import App from './App'; //carga la app que hice
-import '../src/estilos.css'; //carga el css 
-import 'bootstrap/dist/css/bootstrap.min.css'; //esto carga bootstrap
+import App from './App'; 
+import '../src/estilos.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />) //lo muestra en el render
+root.render(<App />) 
 ;
 

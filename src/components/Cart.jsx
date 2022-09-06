@@ -1,101 +1,112 @@
+// import { useCarrito } from "./CustomProvider";
+// import { db } from "../firebase"
+// import { collection , getDoc , doc } from "firebase/firestore"
+// // import {useParams } from "react-router-dom"
+
+// const Cart = ({item}) => {
+
+//     // const [nombre, setNombre] = useState("");
+//     // const [apellido, setApellido] = useState("");
+//     // const [usuarios, setUsuarios] = useState([]);
+//     const { carrito, precioTotal, eliminarProducto, vaciarCarrito } = useCarrito()
+//     const productosCollection = collection(db, "products")
+//     const referencia = doc(productosCollection,id) //DocumentReference
+//     const consulta = getDoc(referencia) //Promise
+//     // const { id } = useParams();
+//     // const {id} = item
+
+//     console.log(carrito)
+//     return (
+//         <section>
+//             <h2>Carrito</h2>
+//             {carrito.map(item => (
+//                 <article key={item.id}>
+//                     <img src="(prod.image}" alt="" />
+//                     <h4>{item.product}</h4>
+//                     <h4>Cantidad{item.cantidad}</h4>
+//                     <button onClick={() => eliminarProducto(item.id)}>X</button>
+//                     <div>
+//                     <h3>Total: ${precioTotal()}</h3>
+//                     <button onClick={() => vaciarCarrito(item.id)}>Vaciar carrito</button>
+//                     </div>
+//                 </article>
+//             ))}
+//         </section>
+//     )
+// }
+        
+// export default Cart
+
+
 // import { useState } from "react"
-// import Page from "./Page"
 // import List from "./List";
-// import React, { useContext } from 'react';
-// import { contexto, useCarrito } from './CustomProvider'
+// import Page from "./Page"
+// import { db } from "../firebase"
+// import { collection, addDoc , serverTimestamp } from "firebase/firestore"
+// import { useCarrito } from "./CustomProvider";
+// import { toast } from "react-toastify";
+
 
 // const Cart = () => {
 
-//     const { carrito } = useContext(useCarrito);
+//     const [nombre, setNombre] = useState("");
+//     const [apellido, setApellido] = useState("");
+//     const [usuarios, setUsuarios] = useState([]);
+//     const { carrito, precioTotal } = useCarrito()
 
-//     if (carrito.length > 0) {
-//         return(
-//             <div>
-//                 {
-//                     carrito.map((element, index) => {
-//                         return <div key={index}>
-//                             <div>
-//                                 <img src={element.pictureURL} alt ={element.name}></img>
-//                             </div>
-//                             <div>
-//                                 <h3>{element.name}</h3>
-//                                 <h2>Precio: $ {element.price}</h2>
-//                                 <h3>Unidades: </h3>
-//                             </div>
-//                             <div className="btn btn-danger">
-//                                 Delete
-//                             </div>
-//                         </div>
-//                     })
-//                 }
-//             </div>
-//         )
+//   //Variables/Valores precomputados
+//     const nombreCompleto = `${nombre} ${apellido}`;
+//     const handleChangeNombre = (e) => {
+//         e.preventDefault()
+//         const input = e.target
+//         const value = input.value
+//         setNombre(value)
+//     }
+//     const handleChangeApellido = (e) => {
+//         const input = e.target
+//         const value = input.value
+//         setApellido(value)
+//     }
+
+//     const handleConfirm = () => {
+
+//         const orden = {
+//         items: carrito,
+//         total : 300,
+//         buyer : {
+//             name : "Juan Perez",
+//             phone : "123456789",
+//             email : "email@mail.com"
+//         },
+//         date : serverTimestamp()
+//         }
+
+//         const ordersCollection = collection(db, "orders")
+//         const consulta = addDoc(ordersCollection, orden)
+
+//         consulta
+//         .then((res)=>{
+//             toast.success(`Felicitaciones. Tu orden ${res.id} creada con exito!`)
+//         })
+//         .catch(error => {
+//             console.log(error)
+//         })
 //     }
 
 //     return (
-//         <Page titulo ="Carrito" subtitulo="Compra y vende">
+//         <Page titulo="Carrito" subtitulo="Compra y vende">
+//         <input type="text" placeholder="Nombre" onChange={handleChangeNombre} value={nombre} />
+//         <input type="text" placeholder="Apellido" onChange={handleChangeApellido} value={apellido} />
 
-//             {/* <input type="text" placeholder="Nombre" onChange={handleChangeNombre} value={nombre}/>
-//             <input type="text" placeholder="Apellido" onChange={handleChangeApellido} value={apellido}/> */}
+//         <button onClick={handleConfirm}>guardar</button>
 
-//             {/* <button onClick={handleConfirm}>guardar</button> */}
-//             <button >guardar</button>
-
-//             {/* <List usuarios={usuarios}/> */}
-//             <List/>
+//         <List usuarios={usuarios} />
 
 //         </Page>
 //     )
-// }
-
-// export default Cart 
-
-import { useState } from "react"
-import Page from "./Page"
-
-import List from "./List";
-
-const Cart = () => {
-    const [nombre, setNombre] = useState("");
-    const [apellido, setApellido] = useState("");
-    const [usuarios, setUsuarios] = useState([]);
+//     }
+// export default Cart
 
 
-    const handleChangeNombre = (e) => {
-        const input = e.target
-        const value = input.value
-        setNombre(value)
-    }
 
-    const handleChangeApellido = (e) => {
-        const input = e.target
-        const value = input.value
-        setApellido(value) 
-    }
-
-    const handleConfirm = () => {
-        const usuario = {nombre, apellido}
-        const usuarios_copia = [...usuarios]
-        usuarios_copia.push(usuario)
-        setUsuarios(usuarios_copia)
-    }
-
-
-    return (
-        <Page titulo ="Carrito" subtitulo="Compra y vende">
-            {/*<p id="parrafo">El Contador va : {estadoPadre}</p>
-            <Contador estadoPadre={estadoPadre} setEstadoPadre={setEstadoPadre} />
-            <Slider estadoPadre={estadoPadre} setEstadoPadre={setEstadoPadre}/> */}
-            {/* <ItemCount estadoPadre={estadoPadre} setEstadoPadre={setEstadoPadre} /> */}
-            <input type="text" placeholder="Nombre" onChange={handleChangeNombre} value={nombre}/>
-            <input type="text" placeholder="Apellido" onChange={handleChangeApellido} value={apellido}/>
-
-            <button onClick={handleConfirm}>guardar</button>
-
-            <List usuarios={usuarios}/>
-
-        </Page>
-    )
-}
-export default Cart 
 

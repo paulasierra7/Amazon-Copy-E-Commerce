@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import { Row, Col, CardGroup, Card, CardImg, CardTitle, CardSubtitle, CardText, Button, CardBody } from 'reactstrap';
-import { products } from "../productos";
+// import { products } from "../productos";
+
+//productos vienen de itemListContainer
 
 const Item = ({ producto }) => {
 

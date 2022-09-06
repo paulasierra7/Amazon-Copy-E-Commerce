@@ -1,10 +1,9 @@
-import { useParams } from "react-router-dom"
+// import { useParams } from "react-router-dom"
 
 
 const Page = (props) => {
-    const { category } = useParams()
+    // const { category } = useParams()
 
-    // if(category === {apparel}){
     return (
         <>
             <div className="page">

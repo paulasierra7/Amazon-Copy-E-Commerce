@@ -1,10 +1,8 @@
-
-
 import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail"
 import { useParams } from "react-router-dom";
-import { products } from '../productos';
-import { customFetch } from "./customFetch";
+// import { products } from '../productos';
+// import { customFetch } from "./customFetch";
 import { Spinner } from "reactstrap";
 import { db } from "../firebase"
 import { collection , getDoc , doc } from "firebase/firestore"

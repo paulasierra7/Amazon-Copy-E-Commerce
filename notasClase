@@ -137,8 +137,8 @@ Componente son funciones, SIEMPRE EN MAYUSCULAS, siempre tiene return, solo 1 re
 //*    -archivo: APP.JS
             function App(){ //Componente son funciones, SIEMPRE EN MAYUSCULAS, siempre tiene return, solo 1 return por compomente.
                 return (
-                    //OBLIGATORIO poner <fragment><fragment/> o vacia <></> se llena solo
-                    //class no sirve pasa a className, de resto tdo si pero en camel case si son dos palabras. 
+                    OBLIGATORIO poner <fragment><fragment/> o vacia <></> se llena solo
+                    class no sirve pasa a className, de resto tdo si pero en camel case si son dos palabras. 
                     <> 
                     <Header/> //asi se importa el archivo componente header. 
                     <header id="header">

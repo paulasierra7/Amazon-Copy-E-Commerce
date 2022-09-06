@@ -2,7 +2,7 @@ const Perfil = () => {
     return (
         <div className="perfil">
             <div className="img-perfil">
-                <img src="https://avatars.githubusercontent.com/u/65257680?v=4" alt="" class="img-fluid"></img>
+                <img src="https://avatars.githubusercontent.com/u/65257680?v=4" alt="" className="img-fluid"></img>
             </div>
             <br/>
             <h2>Paula Sierra</h2>

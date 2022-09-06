@@ -3,8 +3,9 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import CustomProvider from "./components/CustomProvider";
-import firebase from "./firebase";
-
+// import firebase from "./firebase";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => { 
     
@@ -13,7 +14,8 @@ const App = () => {
             <CustomProvider>
                     <Header />
                     <Main />
-                    <Footer /> 
+                    <Footer />
+                    <ToastContainer/> 
             </CustomProvider>  
         </BrowserRouter>       
     )

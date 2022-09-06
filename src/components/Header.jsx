@@ -1,5 +1,4 @@
-import { Navbar, Container } from "react-bootstrap"
-import { Link } from "react-router-dom";
+import { Navbar } from "react-bootstrap"
 import BarraNav from "./Nav";
 
 const Header = () => {
