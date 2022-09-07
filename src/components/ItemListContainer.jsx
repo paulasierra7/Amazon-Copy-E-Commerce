@@ -7,14 +7,16 @@ import Page from "./Page"
 import { collection, getDocs , query , where } from "firebase/firestore"
 import { db } from "../firebase"
 import {toast} from "react-toastify"
+import { customFetch } from "./customFetch";
 
 //contenedor que resuelve la promesa - se la pasa a item list - y el item lo renderiza. 
 
-const ItemListContainer = () => {
+const ItemListContainer = ({props}) => {
 
     const [productos, setProductos] = useState([]) //este es listProduct
     const [loading, setLoading] = useState(true)
     const { id } = useParams()
+    const { category } = useParams()
 
 
     useEffect(() => {
@@ -59,6 +61,8 @@ const ItemListContainer = () => {
             })
         }
     }, [id])
+
+
 
 
     return(

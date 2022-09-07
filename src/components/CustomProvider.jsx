@@ -20,6 +20,7 @@ const CustomProvider = (props) => {
         precioTotal(producto.cantidad * producto.price)
         carrito.push(producto.id)
     }
+    console.log(carrito)
 
     // const agregarProducto = (item, producto) => {
     //     if (estaEnCarrito(item.id)) {

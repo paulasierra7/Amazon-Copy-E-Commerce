@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import { db } from "../firebase"
 import { collection , getDoc , doc } from "firebase/firestore"
+import ItemCount from "./ItemCount";
 
 
 const ItemDetailContainer = () => {
@@ -33,7 +34,7 @@ const ItemDetailContainer = () => {
 
     return(
         <>
-            {!loading ? <ItemDetail item={item} /> : <h1> Cargando...</h1>&& <Spinner/>}
+            {!loading ? <ItemDetail item={item} /> : <h1> Cargando...</h1>&& <Spinner/> }
         </>
     )
 }

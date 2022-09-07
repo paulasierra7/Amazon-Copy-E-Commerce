@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import { useState } from 'react';
 import ItemCount from './ItemCount';
 import { useCarrito } from './CustomProvider';
-// import Cart from './Cart';
+import Cart from './Cart';
 
 const ItemDetail = ({ item }) => { 
 
@@ -60,12 +60,11 @@ return (
                 {
                     isAdded ?   
                     <div>
-                    <NavLink to="/cart">
-                        <br />
-                        <Button type="button" className="btn btn-danger" size="lg">Ir al carrito</Button>
-                        <br />
-                        {/* <Cart item={item} /> */}
-                    </NavLink>
+                        <NavLink to="/cart">
+                                <br />                     
+                                <Cart item={item}><Button type="button" className="btn btn-danger" size="lg">Ir al carrito</Button></Cart>
+                                <br />
+                        </NavLink>
                     </div>
                     :
                     <ItemCount initial={1} stock={stock} onAdd={onAdd} itemprice={item.price} itemid={item.id} />

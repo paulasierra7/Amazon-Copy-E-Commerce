@@ -1,3 +1,29 @@
+import { useCarrito } from "./CustomProvider";
+import { db } from "../firebase"
+import { collection , getDoc , doc } from "firebase/firestore"
+
+const Cart = ({item}) => {
+
+    const { carrito, precioTotal, eliminarProducto, vaciarCarrito } = useCarrito()
+
+
+    console.log(item)
+    console.log(carrito)
+
+    return (
+        <section>
+            <h2>Carrito</h2>
+        </section>
+    )
+}
+        
+export default Cart
+
+
+
+
+//------------------
+
 // import { useCarrito } from "./CustomProvider";
 // import { db } from "../firebase"
 // import { collection , getDoc , doc } from "firebase/firestore"
@@ -37,6 +63,9 @@
         
 // export default Cart
 
+
+
+//----------------
 
 // import { useState } from "react"
 // import List from "./List";
