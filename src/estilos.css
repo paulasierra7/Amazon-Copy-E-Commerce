@@ -85,7 +85,6 @@ body {
 }
 
 .header {
-    background-color: red;
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 1rem;
@@ -139,7 +138,7 @@ footer {
     align-items: center;
     padding: 0.5rem 1rem;
     margin-top: 1rem;
-    background-color: red;
+    background-color: #262626;
 }
 
 
@@ -223,4 +222,10 @@ ul {list-style: none;}
     
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    }
+
+@media (min-width: 1025px) {
+    .h-custom {
+    height: 100vh !important;
+    }
     }

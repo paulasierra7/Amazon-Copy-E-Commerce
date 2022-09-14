@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail"
 import { useParams } from "react-router-dom";
-// import { products } from '../productos';
-// import { customFetch } from "./customFetch";
 import { Spinner } from "reactstrap";
 import { db } from "../firebase"
 import { collection , getDoc , doc } from "firebase/firestore"
-import ItemCount from "./ItemCount";
 
 
 const ItemDetailContainer = () => {
@@ -40,6 +37,8 @@ const ItemDetailContainer = () => {
 }
 
 export default ItemDetailContainer
+
+
 
 
 

@@ -34,7 +34,7 @@ const BarraNav = ({ type }) => {
     } else {
         return (
             <nav>
-            <Navbar  fixed="bottom" bg="dark" variant="dark"  className="BarraNav">
+            <Navbar bg="dark" variant="dark"  className="BarraNav">
                 <Container className="justify-content-end">
                     <Link className="tabNav" to ="/perfil/">Perfil</Link>
                 </Container>

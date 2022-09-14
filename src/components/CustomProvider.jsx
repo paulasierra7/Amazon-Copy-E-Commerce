@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+
 const contexto = createContext();
 const { Provider } = contexto;
 
@@ -8,52 +9,42 @@ export const useCarrito = () => {
 
 const CustomProvider = (props) => {
 
-
-    const [cantidad, setCantidad] = useState(0);
     const [carrito, setCarrito] = useState([]);
-    // const [precioTotal, setPrecioTotal] = useState(0);
 
     const estaEnCarrito = (id) => carrito.find(producto => producto.id === id)
 
-    const agregarProducto = (producto) => {
-        setCantidad(cantidad + producto.cantidad)
-        precioTotal(producto.cantidad * producto.price)
-        carrito.push(producto.id)
+    const agregarProducto = (item, cantidad) => {
+        if (estaEnCarrito(item.id)) {
+            const nuevoCarrito = carrito.map(producto => {
+                if (producto.id === item.id) {
+                    const nuevaCantidad = producto.cantidad + cantidad
+                    const newStock = producto?.stock - cantidad
+                    return {...producto, cantidad: nuevaCantidad, stock: newStock}
+                } else {
+                    return producto
+                }
+            })
+            setCarrito(nuevoCarrito)
+        } else {
+            const nuevoProducto = {...item, cantidad: cantidad}
+            setCarrito([...carrito, nuevoProducto])
+        }
     }
-    console.log(carrito)
-
-    // const agregarProducto = (item, producto) => {
-    //     if (estaEnCarrito(item.id)) {
-    //         const nuevoCarrito = carrito.map(producto => {
-    //             if (producto.id === item.id) {
-    //                 const nuevaCantidad = producto.cantidad + cantidad
-    //                 return {...producto, cantidad: nuevaCantidad}
-    //             } else {
-    //                 return producto
-    //             }
-    //         }) 
-    //         setCarrito(nuevoCarrito)
-    //     } else { 
-    //         const nuevoProducto = {...item, cantidad: cantidad}
-    //         setCarrito([...carrito, nuevoProducto])
-    //     }
-    // }
 
     const eliminarProducto = (id) => setCarrito(carrito.filter(prod => prod.id !== id))
 
     const vaciarCarrito = () => setCarrito([])
 
-    const precioTotal = () => { 
-        return carrito.reduce((acc, product) => acc += (product.price * product.cantidad, 0))
+    const precioTotal = (item, cantidad) => {
+        return carrito.reduce((acc,item) => acc += (item?.price * item?.cantidad, 0))
     }
 
-    const cantidadTotal = () => { 
-        return carrito.reduce((acc,product) => acc += product.cantidad, 0)
+    const cantidadTotal = () => {
+        return carrito.reduce((acc, product) => acc += product.cantidad, 0)
     }
-    
+
     const valorDelContexto = {
-        cantidad: parseInt(cantidad),
-        carrito : carrito,
+        carrito,
         agregarProducto,
         eliminarProducto,
         vaciarCarrito,
@@ -61,7 +52,7 @@ const CustomProvider = (props) => {
         precioTotal,
         cantidadTotal
     }
-    
+
     return (
         <Provider value={valorDelContexto}>
             {props.children}

@@ -27,3 +27,18 @@
 //     })
 // }, [category])
 
+//___________
+
+// useEffect(() => {
+//     setLoading(true)
+//     customFetch(products)
+//         .then(res => {
+//             if (category) {
+//                 setLoading(false)
+//                 setProductos(res.filter(prod => prod.category === category))
+//             } else { 
+//                 setLoading(false)
+//                 setProductos(res)
+//             }
+//         })
+// }, [category])

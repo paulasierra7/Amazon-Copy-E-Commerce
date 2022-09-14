@@ -1,32 +1,35 @@
-import { useEffect, useState } from "react"
-import {useParams } from "react-router-dom"
-import { Spinner } from 'reactstrap';
+import {useEffect, useState} from "react"
+import {useParams} from "react-router-dom"
+import {Spinner} from 'reactstrap';
 import Banners from "./Banners"
 import ItemList from "./ItemList"
 import Page from "./Page"
-import { collection, getDocs , query , where } from "firebase/firestore"
-import { db } from "../firebase"
-import {toast} from "react-toastify"
-import { customFetch } from "./customFetch";
+import {collection, getDocs} from "firebase/firestore"
+import {db} from "../firebase"
+//contenedor que resuelve la promesa - se la pasa a item list - y el item lo renderiza.
 
-//contenedor que resuelve la promesa - se la pasa a item list - y el item lo renderiza. 
-
-const ItemListContainer = ({props}) => {
+const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([]) //este es listProduct
+    const [productosFiltrados, setProductosFiltrados] = useState(productos)
     const [loading, setLoading] = useState(true)
-    const { id } = useParams()
-    const { category } = useParams()
-
-
+    const {category} = useParams()
     useEffect(() => {
-        if(!id){
-            const productosCollection = collection(db, "products")
-            const consulta = getDocs(productosCollection)
+        if(!loading){
+            if (category) {
+                const filterProducts = productos?.filter(prod => prod?.category === category)
+                setProductosFiltrados(filterProducts)
+            }
+            else setProductosFiltrados(productos)
+        }
+    }, [category, loading, productos])
+    useEffect(() => {
+        const productosCollection = collection(db, "products")
+        const consulta = getDocs(productosCollection)
 
-            consulta
-            .then(snapshot=>{
-                const productos = snapshot.docs.map(doc=>{
+        consulta
+            .then(snapshot => {
+                const productos = snapshot.docs.map(doc => {
                     return {
                         ...doc.data(),
                         id: doc.id
@@ -35,51 +38,27 @@ const ItemListContainer = ({props}) => {
                 setProductos(productos)
                 setLoading(false)
             })
-            .catch(err=>{
+            .catch(err => {
                 console.log(err)
             })
-        } else {
-            const productosCollection = collection(db, "products")
-            const filtro = query(productosCollection,
-                where("category","==",id),
-                where("stock",">",10))
-            const consulta = getDocs(filtro)
-
-            consulta
-            .then(snapshot=>{
-                const productos = snapshot.docs.map(doc=>{
-                    return {
-                        ...doc.data(),
-                        id: doc.id
-                    }
-                })
-                setProductos(productos)
-                setLoading(false)
-            })
-            .catch(err=>{
-                toast.error("Error al cargar los productos")
-            })
-        }
-    }, [id])
+    }, [])
 
 
+    return (
+        <>
+            <Banners/>
+            {!loading && <Spinner/>
+                ?
+                <Page titulo="Catalogo" subtitulo="Todos los productos en un solo lugar" category="prod.category">
+                    <ItemList productos={productosFiltrados}/>
+                </Page>
+                :
+                <h1>.</h1> && <p>Estamos cargando tus productos...</p> && <Spinner/>
+            }
+        </>
+    )
+}
 
-
-    return(
-                    <>
-                    <Banners/>
-                        {!loading && <Spinner />
-                        ?
-                    <Page titulo="Catalogo"  subtitulo="Todos los productos en un solo lugar" category="prod.category">
-                    <ItemList productos={productos} />
-                    </Page>
-                    :
-                    <h1>.</h1>&&<p>Estamos cargando tus productos...</p> && <Spinner />
-                    }
-                </>
-            )  
-        }
-        
 export default ItemListContainer
 
 
