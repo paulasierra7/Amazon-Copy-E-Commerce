@@ -1,110 +1,3 @@
-// import { useCarrito } from "./CustomProvider";
-// import { v4 as uuidv4 } from "uuid";
-
-// const Cart = () => {
-
-//     const { carrito, precioTotal, eliminarProducto, vaciarCarrito } = useCarrito()
-
-//     return (
-
-//         <section>
-//             <h2>Carrito</h2>
-//             {carrito?.map((item) => (
-//                 <article key={uuidv4()}>
-//                     <img src={item.image} alt=""/>
-//                     <h4>{item.product}</h4>
-//                     <h4>Cantidad{item.cantidad}</h4>
-//                     <button onClick={() => eliminarProducto(item.id)}>X</button>
-//                     <div>
-//                         <h3>Total: {precioTotal}</h3>
-//                         <button onClick={() => vaciarCarrito(item.id)}>Vaciar carrito</button>
-//                     </div>
-//                 </article>
-//             ))}
-//         </section>
-//     )
-// }
-        
-// export default Cart
-
-
-//----------------
-
-// import { useState } from "react"
-// import List from "./List";
-// import Page from "./Page"
-// import { db } from "../firebase"
-// import { collection, addDoc , serverTimestamp } from "firebase/firestore"
-// import { useCarrito } from "./CustomProvider";
-// import { toast } from "react-toastify";
-
-
-// const Cart = () => {
-
-//     const [nombre, setNombre] = useState("");
-//     const [apellido, setApellido] = useState("");
-//     const [usuarios, setUsuarios] = useState([]);
-//     const { carrito, precioTotal } = useCarrito()
-
-//   //Variables/Valores precomputados
-//     const nombreCompleto = `${nombre} ${apellido}`;
-//     const handleChangeNombre = (e) => {
-//         e.preventDefault()
-//         const input = e.target
-//         const value = input.value
-//         setNombre(value)
-//     }
-//     const handleChangeApellido = (e) => {
-//         const input = e.target
-//         const value = input.value
-//         setApellido(value)
-//     }
-
-//     const handleConfirm = () => {
-
-//         const orden = {
-//         items: carrito,
-//         total : 300,
-//         buyer : {
-//             name : "Juan Perez",
-//             phone : "123456789",
-//             email : "email@mail.com"
-//         },
-//         date : serverTimestamp()
-//         }
-
-//         const ordersCollection = collection(db, "orders")
-//         const consulta = addDoc(ordersCollection, orden)
-
-//         consulta
-//         .then((res)=>{
-//             toast.success(`Felicitaciones. Tu orden ${res.id} creada con exito!`)
-//         })
-//         .catch(error => {
-//             console.log(error)
-//         })
-//     }
-
-//     return (
-//         <Page titulo="Carrito" subtitulo="Compra y vende">
-//         <input type="text" placeholder="Nombre" onChange={handleChangeNombre} value={nombre} />
-//         <input type="text" placeholder="Apellido" onChange={handleChangeApellido} value={apellido} />
-
-//         <button onClick={handleConfirm}>guardar</button>
-
-//         <List usuarios={usuarios} />
-
-//         </Page>
-//     )
-//     }
-// export default Cart
-
-
-
-
-
-
-
 import { useState } from "react"
 import List from "./List";
 import { db } from "../firebase"
@@ -135,9 +28,6 @@ import {
             const [cvv, setCVV] = useState("");
             const [usuarios, setUsuarios] = useState([]);
 
-  //Variables/Valores precomputados
-        // const nombreCompleto = `${nombre}`;
-        // const cardInformation = `${cardNumber} ${expiration} ${cvv}`;
 
         const handleChangeNombre = (e) => {
             e.preventDefault()
@@ -161,15 +51,16 @@ import {
             setCVV(value)
         }
 
+        const cardInformation = `Card Number: ${cardNumber} / Expiration day: ${expiration} / CVV: ${cvv}`;
+
         const handleConfirm = () => {
 
             const orden = {
             items: carrito,
-            total : 300,
+            total : (precioTotal()),
             buyer : {
-                name : "Juan Perez",
-                phone : "123456789",
-                email : "email@mail.com"
+                name : nombre,
+                payment : cardInformation,
             },
             date : serverTimestamp()
             }
@@ -272,21 +163,6 @@ import {
                                     <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
                                         fluid className="rounded-3" style={{ width: "45px" }} alt="Avatar" />
                                     </div>
-                
-                                    {/* <p className="small">Tipo de tarjeta</p>
-                                    <a href="#!" type="submit" className="text-white">
-                                    <MDBIcon fab icon="cc-mastercard fa-2x me-2" />
-                                    </a>
-                                    <a href="#!" type="submit" className="text-white">
-                                    <MDBIcon fab icon="cc-visa fa-2x me-2" />
-                                    </a>
-                                    <a href="#!" type="submit" className="text-white">
-                                    <MDBIcon fab icon="cc-amex fa-2x me-2" />
-                                    </a>
-                                    <a href="#!" type="submit" className="text-white">
-                                    <MDBIcon fab icon="cc-paypal fa-2x me-2" />
-                                    </a> */}
-                            
                                         <MDBCardImage className="me-2" width="45px"
                                         src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
                                         alt="Visa" />
@@ -322,21 +198,8 @@ import {
                 
                                     <hr />
                                         <div className="d-flex justify-content-between">
-                                        <p className="mb-2">Subtotal</p>
-                                        <p className="mb-2">{precioTotal}</p>
-                                        <div>
-                                        <h3>Total: {precioTotal}</h3>
-                                        </div>
-                                        </div>
-                    
-                                        <div className="d-flex justify-content-between">
-                                        <p className="mb-2">Shipping</p>
-                                        <p className="mb-2">$20.00</p>
-                                        </div>
-                    
-                                        <div className="d-flex justify-content-between">
                                         <p className="mb-2">Total(Incl. taxes)</p>
-                                        <p className="mb-2">$4818.00</p>
+                                        <p className="mb-2">$ {precioTotal()} USD</p>
                                         </div>
                     
                                         <MDBBtn color="danger" size="lg" onClick={vaciarCarrito}>
@@ -344,9 +207,9 @@ import {
                                         </MDBBtn>
                                         <MDBBtn color="success" size="lg" onClick={handleConfirm}>
                                         <div className="d-flex justify-content-between">
-                                            <span>{precioTotal}</span>
+                                            <span>$ {precioTotal()} USD </span>
                                             <span>
-                                            Continuar{" "}
+                                              Continuar{" "}
                                             <i className="fas fa-long-arrow-alt-right ms-2"></i>
                                             </span>
                                         </div> 
