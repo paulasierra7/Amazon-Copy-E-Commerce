@@ -1,18 +1,19 @@
 # Amazon e-commerce / By: Paula Sierra
 
-## tech used
-
-*bootstrap
-*reactstrap
-*react-router-dom
-*react-hook-forms
-*react-bootstrap
-*react-loading-skeleton
-*mdb-react-bootstrap
+## tech used 👇
+* bootstrap
+* reactstrap
+* react-router-dom
+* react-hook-forms
+* react-bootstrap
+* react-loading-skeleton
+* mdb-react-bootstrap
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### `npm start`
+### Proyect description
+
+Ecommerce similar to Amazon presented as my final proyect for the class React JS from the school [CODERHOUSE](https://www.coderhouse.com.co/online/reactjs)
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.

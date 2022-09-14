@@ -70,7 +70,7 @@ import {
 
             consulta
             .then((res)=>{
-                toast.success(`Felicitaciones. Tu orden ${res.id} creada con exito!`)
+                toast.success(`Felicitaciones ${nombre}. Tu orden de $ ${(precioTotal())} USD fue creada con exito!`)
             })
             .catch(error => {
                 console.log(error)
@@ -96,13 +96,13 @@ import {
                                     <p className="mb-1">Shopping cart</p>
                                 </div>
                                 <div>
-                                    <p>
-                                    <span className="text-muted">Sort by:</span>
+                                    {/* <p> */}
+                                    {/* <span className="text-muted">Sort by:</span>
                                     <a href="#!" className="text-body">
                                         price
                                         <MDBIcon fas icon="angle-down mt-1" />
                                     </a>
-                                    </p>
+                                    </p> */}
                                 </div>
                                 </div>
                 
