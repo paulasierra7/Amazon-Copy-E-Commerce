@@ -136,9 +136,9 @@ import {
                                                                     $ {item.price}
                                                                     </MDBTypography>
                                                                 </div>
-                                                                <a href="#!" style={{ color: "#cecece" }}>
+                                                                {/* <a href="#!" style={{ color: "#cecece" }}> */}
                                                                     <MDBIcon fas icon="trash-alt" onClick={() => eliminarProducto(item.id)}/>
-                                                                </a>
+                                                                {/* </a> */}
                                                             </div>
                                                     </div>
                                                 

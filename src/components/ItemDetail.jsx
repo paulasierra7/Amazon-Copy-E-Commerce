@@ -23,15 +23,12 @@ return (
         <Row>
             <Col >
             <Card
-                // style={{
-                // width: '18rem'
-                // }}
             >
                 <CardImg
                 src={item.image}
                 top
                 style={{
-                    width: '50%'
+                    width: '20rem'
                     }}
                 />
                 <CardBody>
@@ -68,7 +65,6 @@ return (
                     <ItemCount initial={1} stock={stock} onAdd={onAdd} itemprice={item.price} itemid={item.id} />
 
                 }
-                {/* <Link to={`/cart/${item.id}`}><Button>COMPRAR 🥰 </Button></Link> */}
                 </CardBody>
             </Card>
             </Col>
