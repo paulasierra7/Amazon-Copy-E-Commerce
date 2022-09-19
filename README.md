@@ -12,10 +12,10 @@
 * This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## How to open the website 👇
-1. First way - Link to the website:
+### First way - Link to the website:
 [Amazon e-commerce](https://amazon-ecommerce-chi.vercel.app/)
 
-2. Second way - From the terminal:
+### Second way - From the terminal:
 * [Clone the repository into your terminal](https://github.com/paulasierra7/Amazon-Copy-E-Commerce.git)
 ```
 git clone https://github.com/paulasierra7/Amazon-Copy-E-Commerce.git
