@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom"
-import { Row, Col, CardGroup, Card, CardImg, CardTitle, CardSubtitle, CardText, Button, CardBody } from 'reactstrap';
 import { MDBBtn } from 'mdb-react-ui-kit';
 import { useCarrito } from './CustomProvider';
 import { useState } from 'react';
-import ItemCount from './ItemCount';
-
-
 
 const Item = ({ producto }) => {
 
@@ -69,11 +65,6 @@ const Item = ({ producto }) => {
                         <Link to={`/detalle/${producto.id}`}>
                           <MDBBtn alignment='end' rounded color='dark' className='mx-2'>Ver detalle</MDBBtn>
                         </Link>
-                            {/* <div>
-                                <Link to={`/cart`}>
-                                  <MDBBtn  rounded color='dark' className='mx-2'>Agregar a carrito</MDBBtn>
-                                </Link>
-                            </div>  */}
                       </div>
                     </div>
                   </Link>
@@ -81,55 +72,6 @@ const Item = ({ producto }) => {
               </div>
             </div>
           </div>
-
-
-
-    {/* <CardGroup>
-      <Row>
-        <Col >
-          <Card
-            style={{
-              width: '20rem'
-            }}
-          >
-            <CardImg
-              src={producto.image}
-              top
-              width="100rem"
-              padding="10px"
-            />
-            <CardBody>
-              <CardTitle tag="h5">
-                {producto.product}
-              </CardTitle>
-              <CardText>
-                Color: {producto.color}
-              </CardText>
-              <CardSubtitle
-                className="mb-2 text-muted"
-                tag="h6"
-              >
-                $ {producto.price} USD
-              </CardSubtitle>
-              <CardText>
-                 Stock: {producto.stock}
-              </CardText>
-              <div className="d-grid gap-2 d-md-block">
-                <Link to={`/detalle/${producto.id}`}>
-                  <MDBBtn rounded className='mx-2' color='light'>Ver detalle</MDBBtn>
-                </Link>
-                    <div>
-                        <Link to={`/cart`}>
-                          <MDBBtn  rounded color='dark' className='mx-2'>Agregar a carrito</MDBBtn>
-                        </Link>
-                    </div> 
-              </div>
-              
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-    </CardGroup> */}
     </div>
   )
 }

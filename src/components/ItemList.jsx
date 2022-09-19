@@ -1,6 +1,5 @@
 import Item from './Item';
 
-//productos vienen de itemListContainer
 const ItemList = ({ productos }) => {
     return (
         <section className="items">

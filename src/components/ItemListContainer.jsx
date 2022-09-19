@@ -6,11 +6,10 @@ import ItemList from "./ItemList"
 import Page from "./Page"
 import {collection, getDocs} from "firebase/firestore"
 import {db} from "../firebase"
-//contenedor que resuelve la promesa - se la pasa a item list - y el item lo renderiza.
 
 const ItemListContainer = () => {
 
-    const [productos, setProductos] = useState([]) //este es listProduct
+    const [productos, setProductos] = useState([]) 
     const [productosFiltrados, setProductosFiltrados] = useState(productos)
     const [loading, setLoading] = useState(true)
     const {category} = useParams()

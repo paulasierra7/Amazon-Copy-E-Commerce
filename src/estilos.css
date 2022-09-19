@@ -1,4 +1,3 @@
-/* itemListContainer */
 
 .Bienvenida {
     color: rgb(54, 148, 198);
@@ -8,6 +7,7 @@
     padding: 15px 3px 15px 3px;
     color: whitesmoke;
     text-decoration: none;
+    justify-content: end;
 
 }
 
@@ -29,14 +29,12 @@
     color: whitesmoke;
 }
 
-/* cartWidget.js */
 .cartWidget-Container{
     display: flex;
     justify-content: flex-start;
 }
 
 .cartWidget-icon {
-    /* padding: 20px 10px 40px 10px; */
     height: 25;
     width: 25;
 }
@@ -44,16 +42,13 @@
 .cartWidget-cantidad {
     color: aliceblue;
     font-family: Arial, Helvetica, sans-serif;
-    /* padding: 10px 10px 40px 10px; */
 }
 
-/* ItemCount.js */
 .contador-Card {
     background-color: red;
 }
 
 .material-symbols-outlined {
-    /* padding: 10px 10px 10px 0px; */
     font-variation-settings:
     'FILL' 0,
     'wght' 400,
@@ -214,13 +209,10 @@ ul {list-style: none;}
 }
 
 .gradient-custom {
-    /* fallback for old browsers */
     background: #6a11cb;
     
-    /* Chrome 10-25, Safari 5.1-6 */
     background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
     
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
     }
 

@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, ButtonGroup, NavLink} from 'reactstrap';
 import { Card } from "react-bootstrap";
 import {toast} from "react-toastify"
-import { MDBBtn } from 'mdb-react-ui-kit';
 import '../estilos.css';
 
 

@@ -73,7 +73,6 @@ import {
                 toast.success(`Felicitaciones ${nombre}. Tu orden de $ ${(precioTotal())} USD fue creada con exito!`)
             })
             .catch(error => {
-                console.log(error)
                 toast.false(`Error, vuelve a diligenciar`)
             })
         }
@@ -94,15 +93,6 @@ import {
                                 <div className="d-flex justify-content-between align-items-center mb-4">
                                 <div>
                                     <p className="mb-1">Shopping cart</p>
-                                </div>
-                                <div>
-                                    {/* <p> */}
-                                    {/* <span className="text-muted">Sort by:</span>
-                                    <a href="#!" className="text-body">
-                                        price
-                                        <MDBIcon fas icon="angle-down mt-1" />
-                                    </a>
-                                    </p> */}
                                 </div>
                                 </div>
                 
@@ -136,9 +126,7 @@ import {
                                                                     $ {item.price}
                                                                     </MDBTypography>
                                                                 </div>
-                                                                {/* <a href="#!" style={{ color: "#cecece" }}> */}
                                                                     <MDBIcon fas icon="trash-alt" onClick={() => eliminarProducto(item.id)}/>
-                                                                {/* </a> */}
                                                             </div>
                                                     </div>
                                                 
@@ -160,8 +148,6 @@ import {
                                     <MDBTypography tag="h5" className="mb-0" >
                                         Detalles del pago
                                     </MDBTypography>
-                                    <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                                        fluid className="rounded-3" style={{ width: "45px" }} alt="Avatar" />
                                     </div>
                                         <MDBCardImage className="me-2" width="45px"
                                         src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
@@ -178,20 +164,20 @@ import {
                                     
                 
                                     <form className="mt-4">
-                                    <MDBInput className="mb-4" label="Nombre en la tarjeta" type="text" size="lg"
-                                        placeholder="Cardholder's Name" contrast onChange={handleChangeNombre} value={nombre} required />
+                                    <MDBInput required className="mb-4" label="Nombre en la tarjeta" type="text" size="lg"
+                                        placeholder="Cardholder's Name" contrast onChange={handleChangeNombre} value={nombre}  />
                 
-                                    <MDBInput className="mb-4" label="Numero de tarjeta" type="text" size="lg"
-                                        minLength="19" maxLength="19" placeholder="1234 5678 9012 3457" contrast onChange={handleChangeCardNumber} value={cardNumber} required/>
+                                    <MDBInput required className="mb-4" label="Numero de tarjeta" type="text" size="lg"
+                                        minLength="19" maxLength="19" placeholder="1234 5678 9012 3457" contrast onChange={handleChangeCardNumber} value={cardNumber}/>
                 
                                     <MDBRow className="mb-4">
                                         <MDBCol md="6">
-                                        <MDBInput className="mb-4" label="Vencimiento" type="text" size="lg"
-                                            minLength="7" maxLength="7" placeholder="MM/YYYY" contrast onChange={handleChangeExpiration} value={expiration}  required/>
+                                        <MDBInput required className="mb-4" label="Vencimiento" type="text" size="lg"
+                                            minLength="7" maxLength="7" placeholder="MM/YYYY" contrast onChange={handleChangeExpiration} value={expiration}/>
                                         </MDBCol>
                                         <MDBCol md="6">
-                                        <MDBInput className="mb-4" label="CVV" type="text" size="lg" minLength="3"
-                                            maxLength="3" placeholder="&#9679;&#9679;&#9679;" contrast onChange={handleChangeCVV} value={cvv} required/>
+                                        <MDBInput required className="mb-4" label="CVV" type="text" size="lg" minLength="3"
+                                            maxLength="3" placeholder="&#9679;&#9679;&#9679;" contrast onChange={handleChangeCVV} value={cvv} />
                                         </MDBCol>
                                     </MDBRow>
                                     </form>
