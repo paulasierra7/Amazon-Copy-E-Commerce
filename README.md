@@ -11,12 +11,11 @@
 * vercel
 * This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## How to open the website 👇
-### First way - Link to the website:
-[Amazon e-commerce](https://amazon-ecommerce-chi.vercel.app/)
+## How to open the website 
+### First way 👉 Open the URL of [the proyect](https://amazon-ecommerce-chi.vercel.app/)
 
-### Second way - From the terminal:
-* [Clone the repository into your terminal](https://github.com/paulasierra7/Amazon-Copy-E-Commerce.git)
+### Second way 👉 From the terminal:
+* Clone the [repository](https://github.com/paulasierra7/Amazon-Copy-E-Commerce.git) of the ecommerce into your terminal.
 ```
 git clone https://github.com/paulasierra7/Amazon-Copy-E-Commerce.git
 ```
@@ -24,9 +23,7 @@ git clone https://github.com/paulasierra7/Amazon-Copy-E-Commerce.git
 ```
 npm start
 ```
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Run the app in the development mode by opening [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### Proyect description
 
