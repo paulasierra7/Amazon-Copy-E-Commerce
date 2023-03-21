@@ -1,5 +1,8 @@
 # Amazon e-commerce / By: Paula Sierra
 
+## preview 💻
+![](https://github.com/paulasierra7/Amazon-Copy-E-Commerce/blob/8d4621aff5e996ccb4a2dbec4302ebac6d374eb6/proyectoFinal.gif)
+
 ## tech used 🤖
 * bootstrap
 * reactstrap
@@ -11,8 +14,6 @@
 * vercel
 * This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## preview 💻
-![](https://github.com/paulasierra7/Amazon-Copy-E-Commerce/blob/8d4621aff5e996ccb4a2dbec4302ebac6d374eb6/proyectoFinal.gif)
 
 ## How to open the website 
 ### First way 👉 Open the URL of [the proyect](https://amazon-ecommerce-chi.vercel.app/)
